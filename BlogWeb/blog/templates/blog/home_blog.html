@@ -1,0 +1,32 @@
+{% extends 'main/base.html' %}
+
+{% block contant %}
+
+<div class="container">
+
+    <h1>BLOG</h1>
+
+    <div class="row">
+
+        {% for blog in blog %}
+
+            <div class="col-7">
+                <div class="d-flex flex-column gap-2 p-3 border border-1 rounded-4 shadow">
+                    <h3>{{ blog.title }}</h3>
+                    <h4>{{blog.content}}</h4>
+                    <h4> is published :{{ blog.is_published }} </h4>
+                    <h4>published at  {{blog.published_at}}</h4>
+
+                </div>
+            </div>
+            
+
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+
+{%endblock%}

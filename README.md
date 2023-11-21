@@ -1,7 +1,7 @@
 # LAB_ORM-1
 
 ## Using what you learned , Create a Blog website .
-- Users can read the blog posts.
+- Users can read the blog posts.p
 - Users can Add a blog post. 
 
 
