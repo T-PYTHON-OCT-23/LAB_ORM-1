@@ -1,0 +1,28 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+
+{% block title %} Add blog {% endblock %}
+
+{% block header %} Add a New blog {% endblock %}
+
+{% block content %}
+<section class="container">
+    <h1>Add new Blog</h1>
+    <div class="row">
+        <div class="col-6">
+            <form action="{% url 'main:add_blog' %}" method="POST">
+                {% csrf_token %}
+                <label> Blog Name: </label>
+                <input class="form-control" type="text" name="name" placeholder="Add a title for your blog..." />
+
+                <label> Write your Blog:</label>
+                <textarea class="form-control" name="paragraph"></textarea>
+
+                <label> Blog Release Date: </label>
+                <input class="form-control" name="release_date" type="date" />
+                <input class="btn btn-primary" type="submit" value="Create Blog" />
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock %}
