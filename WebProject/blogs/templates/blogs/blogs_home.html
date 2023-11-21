@@ -1,0 +1,32 @@
+{% extends 'main/base.html' %}
+
+{% block title %} All Blogs {% endblock %}
+
+{% block content %}
+
+<section class="container">
+
+    <h1>All Blogs</h1>
+
+    <div class="row">
+
+        {% for blog in blogs %}
+
+            <div class="col-4">
+                <div class="d-flex flex-column gap-2 p-3 border border-1 rounded-4 shadow">
+                    <h2>{{ blog.title }}</h2>
+                    <h4> content:  {{blog.content}}</h4>
+                    <h4>is published:{{blog.is_published}}</h4>
+                    <h4>published at : {{ blog.published_at }} </h4>
+                </div>
+            </div>
+            
+
+
+        {% endfor %}
+
+    </div>
+
+</section>
+
+{% endblock %}
