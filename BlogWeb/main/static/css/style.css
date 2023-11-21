@@ -1,0 +1,21 @@
+body{
+    background-color:rgb(128, 128, 128,0.7);
+}
+h2,h3,h4,h5,h6,p{
+    color:white
+}
+.read{
+    background-color: rgb(128, 128, 128,0.7);
+    border-radius: 30px;
+}
+.container{
+    background-color: pink;
+    border-radius: 30px;
+}
+.black{
+    color: black
+}
+.read h3{
+    display: inline;
+}
+
