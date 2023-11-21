@@ -1,0 +1,27 @@
+{% extends 'main/base.html' %}
+
+{% load static %}
+
+{% block title %}Publications{% endblock %}
+
+{% block content %}
+
+<div class="container" >
+    <div class="row">
+
+        <div class="col">
+            {% for p in publications %}
+            <div class="blog-post">
+                <h2 class="blog-post-title">{{p.title}}</h2>
+                <p class="blog-post-meta">posted on:{{p.published_at}}</p>
+                <p>{{p.content}}</p>
+          
+                
+              </div>
+            {% endfor %}
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}
