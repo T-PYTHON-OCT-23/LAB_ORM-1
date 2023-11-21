@@ -1,0 +1,16 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+
+{% block title %}Blog Posts{% endblock %}
+
+{% block header %}Latest Blog Posts{% endblock %}
+
+{% block content %}
+    {% for post in posts %}
+        <article>
+            <h2><a href="{% url 'main:post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
+            <p>Published on: {{ post.published_at }}</p>
+            <p>{{ post.content }}</p>
+        </article>
+    {% endfor %}
+{% endblock %}
