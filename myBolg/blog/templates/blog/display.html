@@ -1,0 +1,47 @@
+{% extends 'main/base.html' %}
+
+{% block title %} Display Posts {% endblock %}
+
+{% block content %}
+<div class = "form">
+<section class="container  content ">
+
+    <h1 class = "text-uppercase fw-bold fs-1 text-center">All Posts</h1>
+
+    
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Title</th>
+                <th scope="col">Content</th>
+                <th scope="col">Publish status</th>
+                <th scope="col"> Published Time </th>
+              </tr>
+            </thead>
+        {% for blog in blogs %}
+
+            <div class="col-6 ">
+         
+
+                <tbody>
+                  <tr>
+                   
+                    <td> {{ blog.title }}</td>
+                    <td>{{blog.content}}</td>
+                    <td> {{ blog.is_published }}</td>
+                    <td> {{ blog.published_at }}</td>
+                  </tr>
+                  </tbody>
+            </div>
+              
+
+
+        {% endfor %}
+
+    </table>
+
+</section>
+</div>
+
+
+{% endblock %}
