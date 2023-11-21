@@ -1,0 +1,30 @@
+{% extends 'main/base.html' %}
+
+{% block title %} Display Posts Blog {% endblock %}
+
+{% block content %}
+
+<section class="container">
+
+    <h1>All Posts</h1>
+
+    <div class="row">
+
+        {% for post in posts %}
+
+            <div class="col-4">
+                <div class="d-flex flex-column gap-2 p-3 border border-1 rounded-4 shadow">
+                    <h2>{{ post.title }}</h2>
+                   <p>{{ post.content }}</p>
+                   <p>Published on: {{ post.date_posted }}</p>
+                   <hr>
+                </div>
+            </div>
+
+            {% endfor %}
+
+    </div>
+
+</section>
+
+{% endblock %}
