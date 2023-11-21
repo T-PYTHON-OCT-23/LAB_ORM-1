@@ -1,0 +1,42 @@
+{% extends 'main/base.html' %}
+
+{% block title %} Add New blog {% endblock %}
+
+{% block content %}
+
+<section class="container">
+
+    <h1>Add new blog</h1>
+
+    <div class="row">
+
+        <div class="col-6">
+            <!-- form for submitting the data -->
+
+            <form action="{% url 'myblog:add_blog_view' %}" method="POST">
+                {% csrf_token %}
+                <label>blog Name:</label>
+                <input class="form-control" type="text" name="name" placeholder="blog Name" />
+
+                <label>blog Plot:</label>
+                <textarea class="form-control" name="plot"></textarea>
+
+                <label>blog Rating:</label>
+                <select name="rating" class="form-select">
+                    <option value="1">yes</option>
+                    <option value="2">no</option>
+                </select>
+
+                <label>blog Release Date:</label>
+                <input class="form-control" name="release_date" type="date" />
+
+                <input class="btn btn-primary" type="submit" value="Create blog" />
+            </form>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}
