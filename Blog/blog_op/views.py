@@ -4,8 +4,9 @@ from .models import Published
 # Create your views here.
 
 def add_blog(request:HttpRequest):
-
+    
     if request.method == 'POST':
+        
         try:
             new_published = Published(title=request.POST['title'],content =request.POST['content'],is_published=request.POST['is_published'],published_at=request.POST['published_at'])
             
@@ -31,4 +32,26 @@ def published_detail(request:HttpRequest,published_id):
     except  Exception:
         return redirect('blog_op:publications')
 
+
+def update(request:HttpRequest,published_id):
+    published = Published.objects.get(id=published_id)
+    if request.method == 'POST':
+        published.title = request.POST["title"]
+        published.content =request.POST['content']
+        published.published_at=request.POST['published_at']
+        published.save()
+        redirect('blog_op:publications')
+        
+    return render(request,'blog_op/update.html',{'update':published})
+
+
+
+def delete_blog(request:HttpRequest,published_id):
     
+    published = Published.objects.get(id=published_id)
+    published.delete()
+    
+    return redirect('blog_op:publications')
+
+
+

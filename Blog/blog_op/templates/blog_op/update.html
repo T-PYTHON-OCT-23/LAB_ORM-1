@@ -2,33 +2,28 @@
 
 {% load static %}
 
-{% block title %}Add Blog{% endblock %}
+{% block title %}Update Blog{% endblock %}
 
 {% block content %}
 
 <div class="container">
-    <h1>Add Blog Post</h1>
+    <h1>update {{update.title}}</h1>
 
-    <form method="POST" action="{% url 'blog_op:add_blog' %}">
+    <form method="POST" action="{% url 'blog_op:update' update.id %}">
         {% csrf_token %}
       <div class="mb-3">
         <label for="title" class="form-label">Title</label>
-        <input type="text" class="form-control"  name="title" >
+        <input type="text" class="form-control" value="{{update.title}}" name="title" >
       </div>
 
       <div class="mb-3">
         <label for="content" class="form-label">Content</label>
-        <textarea class="form-control"name="content" rows="3" ></textarea>
+        <textarea class="form-control"name="content"  rows="3" >{{update.content}}</textarea>
       </div>
 
       <div class="mb-3">
         <label for="date" class="form-label">Date</label>
-        <input type="date" class="form-control"  name="published_at" >
-      </div>
-      <div class="mb-3">
-        <label for="date" class="form-label">do you want published?</label>
-        <input type="checkbox"   name="is_published" value="True">
-
+        <input type="date" class="form-control" value="{{update.published_at|date:'Y-m-d' }}"  name="published_at" >
       </div>
 
       <button type="submit" class="btn btn-primary">Post</button>
