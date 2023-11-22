@@ -24,3 +24,23 @@ def show_blogs_detils_view(request:HttpRequest,mo_id):
         return render(request, 'blogs/show_blogs_detlies.html',{'blogs':movie})
     except Exception as e:
         return redirect('blogs:show_blogs_views')
+
+def update_blogs_views(request:HttpRequest,mo_id):
+    blogs = Blogs.objects.get(id=mo_id)
+    if request.method == 'POST':
+        blogs.title = request.POST['title']
+        blogs.name_publisher = request.POST['name_publisher']
+        blogs.published_location = request.POST['published_location']
+        blogs.content = request.POST['content']
+        blogs.is_published = request.POST['is_published']
+        blogs.published_at = request.POST['published_at']
+        blogs.save()
+        return redirect('blogs:show_blogs_detils_view',mo_id=blogs.id)
+
+    return render(request,'blogs/update_blogs.html',{'blogs':blogs})
+
+def delete_blogs_views(request:HttpRequest,mo_id):
+    blogs = Blogs.objects.get(id=mo_id)
+    blogs.delete()
+    
+    return redirect('blogs:show_blogs_views')
