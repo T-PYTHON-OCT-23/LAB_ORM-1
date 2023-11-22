@@ -1,6 +1,5 @@
 # blog/views.py
 from django.shortcuts import render, redirect , get_object_or_404
-from django.http import Http404
 from .models import Post
 from django.utils import timezone 
 from .forms import PostForm
@@ -30,5 +29,15 @@ def view_post(request, post_id):
     return render(request, 'blog/view_post.html', {'post': post})
     #raise Http404("Post does not exist")
     
-    
-    
+def update_post(request, post_id):
+    post = get_object_or_404(Post, id=post_id)
+
+    if request.method == 'POST':
+        form = PostForm(request.POST, instance=post)
+        if form.is_valid():
+            form.save()
+            return redirect('blog:view_post', post_id=post.id)
+    else:
+        form = PostForm(instance=post)
+
+    return render(request, 'blog/update_post.html', {'form': form})
