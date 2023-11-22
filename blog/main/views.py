@@ -18,8 +18,9 @@ def post_create(request):
             post = form.save(commit=False)
             if post.is_published:
                 post.published_at = timezone.now()
+                return redirect('main:post_detail', pk=post.pk)
             post.save()
-            return redirect('main:post_detail', pk=post.pk)
+            return redirect('main:post_list')
     else:
         form = PostForm()
     return render(request, 'blog/post_form.html', {'form': form})
