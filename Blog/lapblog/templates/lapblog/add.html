@@ -16,17 +16,17 @@
             <form action="{% url 'lapblog:add_blog_view' %}" method="POST">
                 {% csrf_token %}
                 <label>Blog Title:</label>
-                <input class="form-control" type="text" name="Blog" placeholder="Blog Title" />
+                <input class="form-control" type="text" name="Title" placeholder="Blog Title" />
 
                 <label>Blog Contant:</label>
-                <textarea class="form-control" name="Contan"></textarea>
+                <textarea class="form-control" name="Contant"></textarea>
 
                 
 
                 <label>Blog is_published:</label>
                 <input class="form-control" name="is_published" type="Boolean" />
                 <label>Blog  published_atd:</label>
-                <input class="form-control" name=" published_atd" type="DateTime" />
+                <input class="form-control" name="published_at" type="DateTime" />
 
                 <input class="btn btn-primary" type="submit" value="Create Blog" />
             </form>
