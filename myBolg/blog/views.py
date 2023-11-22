@@ -2,6 +2,7 @@ from django.shortcuts import render , redirect
 from django.http import HttpRequest, HttpResponse
 from .models import Blog
 
+
 def addBlog(request : HttpRequest):
 
     if request.method == "POST":
@@ -17,4 +18,14 @@ def addBlog(request : HttpRequest):
 def displayBlog(request : HttpRequest):
     blogs = Blog.objects.all()
     return render(request ,"blog/display.html" , {"blogs" : blogs})
+
+
+def detailsBlog(request : HttpRequest ,blog_id):
+    try: 
+       blog = Blog.objects.get(id = blog_id)
+    except  Exception as e:
+
+       return render(request, "main/not_found.html")
+       
+    return render(request ,"blog/details.html" , {"blog" : blog})
 

@@ -1,24 +1,24 @@
 {% extends 'main/base.html' %}
 
-{% block title %} Display Posts {% endblock %}
+{% block title %} {{blog.title}} {% endblock %}
 
 {% block content %}
 <div class = "form">
 <section class="container  content ">
 
-    <h1 class = "text-uppercase fw-bold fs-1 text-center">All Posts</h1>
+    <h1 class = "text-uppercase fw-bold fs-1 text-center">Details Post</h1>
 
     
         <table class="table">
             <thead>
               <tr>
-                <a href=""><th scope="col">Title</th></a> 
+                <th scope="col">Title</th>
                 <th scope="col">Content</th>
                 <th scope="col">Publish status</th>
                 <th scope="col"> Published Time </th>
               </tr>
             </thead>
-        {% for blog in blogs %}
+     
 
             <div class="col-6 ">
          
@@ -26,7 +26,7 @@
                 <tbody>
                   <tr>
                    
-                    <td><a href="{% url 'blog:detailsBlog' blog.id %}">{{ blog.title }}</a></td>
+                    <td> {{ blog.title }}</td>
                     <td>{{blog.content}}</td>
                     <td> {{ blog.is_published }}</td>
                     <td> {{ blog.published_at }}</td>
@@ -36,7 +36,7 @@
               
 
 
-        {% endfor %}
+      
 
     </table>
 
