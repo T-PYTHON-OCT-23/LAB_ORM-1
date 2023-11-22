@@ -14,8 +14,12 @@
 
             <div class="col-4">
                 <div class="d-flex flex-column gap-2 p-3 border border-1 rounded-4 shadow">
+                    <a href="{% url 'lapblog:blog_detail_view'  Web.id %}"><h2>{{ Web.Title }}</h2></a>
+                    
+                     Web.id = None
+                    
                     <h2>{{ Web.Title }}</h2>
-                    <h4>  Contant :  {{Web. Contant }}</h4>
+                    <h4>  Contant :  {{Web.Contant }}</h4>
                     <h4>is_published: {{ Web.is_published }} </h4>
                     <h4>published_at: {{ Web.published_at }} </h4>
                 </div>
@@ -26,3 +30,4 @@
         {% endfor %}
 
     </div>
+    {% endblock %}
