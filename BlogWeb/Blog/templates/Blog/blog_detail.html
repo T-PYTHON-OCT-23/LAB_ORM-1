@@ -2,15 +2,23 @@
 {% load static %}
 {% block title %}Blog detail{% endblock %}
 {% block content %}
-<section class="container my-4">
-    <h1 class="text-center">Read detail blog</h1>
-    <div class="row my-4">
-        <div class="col-4">
-        <div class="d-flex flex-column gap-2 p-3 read mb-3 mx-3">
+<section class="container row m-4 p-4">
+    <h1 class="text-center">Detail blog</h1>
+    <div class="row ">
+        <div class="col">
+        <div class="d-flex flex-column gap-2">
         <h2>Title: {{ blog.title }}</h2>
         <h4>Content: {{ blog.content }}</h4>
         <h4>is published: {{ blog.is_published }}</h4>
         <h4>published at: {{ blog.published_at }}</h4>
+        <div class="dropdown">
+            <button class="btn btn-primary dropdown-toggle px-3 mx-5" type="button" data-bs-toggle="dropdown" aria-expanded="false">Edit</button>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="{% url 'Blog:update_blog' blog.id %}">Update blog</a></li>
+              <li><a class="dropdown-item" href="{% url 'Blog:delete_blog' blog.id %}">Delete</a></li>
+            </ul>
+            <a href="{% url 'Blog:read_blog'%}"><button type="button" class="btn btn-primary">Return to all blogs</button></a>
+          </div>
         </div>
         </div>
     </div>

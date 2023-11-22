@@ -2,10 +2,10 @@
 {% load static %}
 {% block title %}Add blog{% endblock %}
 {% block content %}
-<section class="container my-4 ">
+<section class="container row m-4 p-4">
 <h1 class="text-center">Add new Blog</h1>
-<div class="row col-8 py-3">
-    <div class="mx-3">
+<div class="row col-8">
+    <div class="">
         <form action="{% url 'Blog:add_blog' %}" method="POST">
             {% csrf_token %}
             <label>Title:</label>

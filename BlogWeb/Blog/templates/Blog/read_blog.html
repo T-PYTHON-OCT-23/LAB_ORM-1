@@ -2,13 +2,13 @@
 {% load static %}
 {% block title %}Read blog{% endblock %}
 {% block content %}
-<section class="container my-4">
-    <h1 class="text-center">Read all blogs</h1>
-    <div class="row my-4">
+<section class="container m-4 p-4">
+    <h1 class="text-center">All blogs</h1>
+    <div class="row">
         {% for blog in blogs %}
-        <div class="col-4">
-        <div class="d-flex flex-column gap-2 p-3 read mb-3 mx-3">
-            <a href="{% url 'Blog:blog_detail' blog.id %}"><h2>Title: {{blog.title}}</h2></a>
+        <div class="col">
+        <div class="d-flex flex-column">
+            <a href="{% url 'Blog:blog_detail' blog.id %}"><h3>Title: {{blog.title}}</h3></a>
         </div>
         </div>
         {% endfor %}
