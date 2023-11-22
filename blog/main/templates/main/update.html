@@ -1,0 +1,35 @@
+{% extends 'main/base.html' %}
+
+{% block title %} Read All Blogs {% endblock %}
+
+{% block content %}
+
+<div class="update">
+    <div class="row">
+        <h3> Update {{blog.name}}</h3>
+
+        <div class="col">
+            <form action="{% url 'main:update_blog' blog.id %}" method="POST">
+                {% csrf_token %}
+
+                <label> Blog Name:</label>
+                <input class="form-control" type="text" name="name" placeholder="Enter blog name.."
+                    value="{{blog.name}}" />
+                <br>
+                <br>
+
+                <label> Blog Paragraph: </label>
+                <textarea class="form-control" name="paragraph">{{blog.paragraph}} </textarea>
+                <br>
+                <br>
+
+                <label> Blog Release Date: </label>
+                <input class="form-control" name="release_date" value="{{blog.release_date|date:'Y-m-d'}}" />
+                <br>
+                <input class="btn btn-primary mt-2" type="submit" value="Update Blog" />
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

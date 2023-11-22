@@ -12,11 +12,92 @@
 
     <title> {% block title %} Tourist {% endblock %} </title>
 </head>
+<style>
+    body {
+        background-color: rgb(228, 194, 214);
+    }
+
+    nav {
+        font-family: 'Playfair Display', serif;
+        background-color: rgba(255, 255, 255, 0);
+        padding: 10px;
+        opacity: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        background-attachment: fixed;
+        gap: 10px;
+        border-bottom: solid 1px rgb(5, 5, 5);
+        text-decoration: none;
+    }
+
+    .links {
+        text-decoration: none;
+        color: black;
+    }
+
+    .links:hover {
+        font-size: larger;
+        transition-duration: 0.5s;
+        color: rgb(121, 71, 168);
+    }
+
+    .form-control {
+        width: 500px;
+        height: auto;
+        margin: 15px;
+        box-shadow: 3px 3px 10px rgba(25, 1, 1, 0.315)
+    }
+
+    .form-contro2 {
+        width: 1500px;
+        height: 550px;
+        box-shadow: 3px 3px 10px rgba(25, 1, 1, 0.315)
+    }
+
+    .box {
+        width: 350px;
+        height: auto;
+        border: 1px solid rgb(11, 1, 1);
+        border-radius: 20px;
+        box-shadow: 3px 3px 10px rgba(25, 1, 1, 0.315);
+        padding-left: 20px;
+        margin: 15px;
+        background-color: rgba(255, 235, 205, 0.461);
+    }
+
+    .title1 {
+        width: 75%;
+        font-size: 55px;
+        background-color: rgba(0, 0, 0, 0.267);
+        border-radius: 20px;
+        text-shadow: 3px 3px 10px rgba(14, 9, 0, 0.527);
+        padding-left: 130px;
+        margin-left: 85px;
+    }
+
+    .title {
+        font-size: 30px;
+        text-shadow: 3px 3px 10px rgba(14, 9, 0, 0.527);
+        padding-left: 30px;
+        margin-left: 30px;
+    }
+
+    .row {
+        display: flex;
+        flex-direction: row;
+        gap: 15px;
+    }
+</style>
 
 <body>
     <nav>
-        <a href="{% url 'main:add_blog' %}"> Add Blog </a>
-        <a href="{% url 'main:read_blog' %}"> Read Blogs </a>
+        <a href="/" class="links"> Home </a>
+        <a href="{% url 'main:add_blog' %}" class="links"> Add Blog </a>
+        <a href="{% url 'main:read_blog' %}" class="links"> Read Blogs </a>
+        <a href="{% url 'main:detail_blog' blog_id %}" class="links"> Blogs Details</a>
+        <a href="{% url 'main:update_blog' %}" class="links"> update Blogs</a>
     </nav>
 
     {% block content %}

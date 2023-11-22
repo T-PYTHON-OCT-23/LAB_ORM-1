@@ -1,0 +1,26 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %} details {% endblock %}
+
+{% block content %}
+
+<div class="detail">
+    <div class="row">
+        <h1>{{ blog.name }}</h1>
+        <p>{{ blog.paragraph }}</p>
+        <h6>{{ blog.release_date}}</h6>
+    </div>
+</div>
+
+<div class="dropdown">
+    <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        Edit
+    </button>
+    <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="{% url 'main:update_blog' movie.id %}">Update</a></li>
+        <li><a class="dropdown-item" href="{% url 'main:delete_blog' movie.id %}">Delete</a></li>
+    </ul>
+</div>
+
+{% endblock %}

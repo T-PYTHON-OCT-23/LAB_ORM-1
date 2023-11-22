@@ -1,10 +1,11 @@
 from django.db import models
-from .models import blog
+from datetime import date
+
 
 # Create your models here.
 
 
-class blog(models.Model):
+class Blog(models.Model):
     name = models.CharField(max_length=512)
-    paragraph = models.TextField()
-    release_date = models.DateField()
+    paragraph = models.TextField(default='--')
+    release_date = models.DateField(auto_now=True)
