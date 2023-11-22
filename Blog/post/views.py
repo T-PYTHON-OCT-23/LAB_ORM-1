@@ -5,11 +5,10 @@ from .models import Blog
 
 
 def add_blog_view(request: HttpRequest):
-
-
     if request.method == "POST":
-        new_blog = Blog(title=request.POST["title"], content=request.POST["content"], is_published=request.POST["is_published"], Published_at=request.POST["Published_at"])
+        new_blog = Blog(title=request.POST["title"], content=request.POST["content"], is_published=request.POST["is_published"], Published_at=request.POST["published_at"])
         new_blog.save()
+        return redirect("post:display_blog_view")
 
 
     return render(request, "post/add_post.html")
@@ -20,4 +19,7 @@ def display_blog_view(request: HttpRequest):
      post = Blog.objects.all()
 
      return render(request, 'post/display_blog.html', {'posts': post})
+
+
+
  

@@ -11,17 +11,16 @@
     <div class="row">
 
         {% for post in posts %}
-
             <div class="col-4">
-                <div class="d-flex flex-column gap-2 p-3 border border-1 rounded-4 shadow">
-                    <h2>{{ post.title }}</h2>
-                   <p>{{ post.content }}</p>
-                   <p>Published on: {{ post.date_posted }}</p>
-                   <hr>
+                <div class="card mb-3 d-flex flex-column gap-2 p-3 border border-1 rounded-4 shadow">
+                    <div class="card-body">
+                        <h2 class="card-title">{{ post.title }}</h2>
+                        <p class="card-text">{{ post.content }}</p>
+                        <p class="card-text">Published on: {{ post.date_posted }}</p>
+                    </div>
                 </div>
             </div>
-
-            {% endfor %}
+        {% endfor %}
 
     </div>
 

@@ -1,6 +1,6 @@
 {% extends 'main/base.html' %}
 
-{% block title %} Add Post blog {% endblock %}
+{% block title %} Add Post Blog {% endblock %}
 
 {% block content %}
 
@@ -10,25 +10,23 @@
     <div class="row">
 
         <div class="col-6">
-           
 
             <form action="{% url 'post:add_blog_view' %}" method="POST">
                 {% csrf_token %}
-                <label>Title Name:</label>
-                <input class="form-control" type="text" name="name" placeholder="Title " />
+                <label for="id_name">Title Name:</label>
+                <input id="id_name" class="form-control" type="text" name="title" placeholder="Title" />
 
-                <label>Post Content:</label>
-                <textarea class="form-control" name="Content"></textarea>
+                <label for="id_content">Post Content:</label>
+                <textarea id="id_content" class="form-control" name="content"></textarea>
 
-                <label>Has it been published post?</label>
-                <select name="is_published" class="form-select">
+                <label for="id_is_published">Has it been published post?</label>
+                <select id="id_is_published" name="is_published" class="form-select">
                     <option value="True">Yes</option>
-                    <option value="false">No</option>
-                    
+                    <option value="False">No</option>
                 </select>
 
-                <label>Published Date:</label>
-                <input class="form-control" name="Published_at" type="datetime" />
+                <label for="id_published_at">Published Date:</label>
+                <input id="id_published_at" class="form-control" name="published_at" type="datetime" />
 
                 <input class="btn btn-primary" type="submit" value="Create Post" />
             </form>
@@ -38,6 +36,5 @@
     </div>
 
 </section>
-   
-
 {% endblock %}
+
