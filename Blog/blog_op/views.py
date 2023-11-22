@@ -6,13 +6,29 @@ from .models import Published
 def add_blog(request:HttpRequest):
 
     if request.method == 'POST':
-        new_published = Published(title=request.POST['title'],content =request.POST['content'],is_published=request.POST['is_published'],published_at=request.POST['published_at'])
-        new_published.save()
-        return redirect(request,'blog_op:publications')
+        try:
+            new_published = Published(title=request.POST['title'],content =request.POST['content'],is_published=request.POST['is_published'],published_at=request.POST['published_at'])
+            
+            new_published.save()
+        except Exception:
+            return redirect('blog_op:add_blog')
+    
+        return redirect('blog_op:publications')
 
     return render (request,'blog_op/add.html')
 
 def publications(request:HttpRequest):
     pub = Published.objects.all()
-
+    
     return render(request,'blog_op/publications.html',{'publications':pub})
+
+
+
+def published_detail(request:HttpRequest,published_id):
+    try:
+        publidhed = Published.objects.get(id=published_id)
+        return render(request,'blog_op/detail.html',{'puplidhed':publidhed})
+    except  Exception:
+        return redirect('blog_op:publications')
+
+    
