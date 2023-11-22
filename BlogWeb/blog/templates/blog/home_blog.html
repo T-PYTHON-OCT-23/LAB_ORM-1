@@ -2,16 +2,16 @@
 
 {% block contant %}
 
-<div class="container">
+<div class="container-home-add">
 
-    <h1>BLOG</h1>
+    <h1>ALL POST</h1>
 
     <div class="row">
 
         {% for blog in blog %}
 
-            <div class="col-7">
-                <div class="d-flex flex-column gap-2 p-3 border border-1 rounded-4 shadow">
+            <div class="col-5">
+                <div class="d-flex flex-column gap-2 p-3 border border-1 rounded-4 shadow mb-4 text-bg-secondary p-3">
 
                     <a href="{% url 'blog:details_blog_views' blog.id %}"><h3>{{ blog.title }}</h3></a> 
                     <h4>{{blog.content}}</h4>
