@@ -1,0 +1,21 @@
+.container{
+    justify-content: space-between;
+    position: fixed;
+    width: 100%;
+    top:0px;
+    left:0px;
+    padding-top: 10vh;
+    z-index: 10;
+    display: flex;
+    padding-left: 10vw;
+    padding-right: 10vw;
+    flex-direction: row;
+    gap: 4rem;
+    padding: 2rem 7rem;
+    flex-wrap: wrap;
+    align-items: center;
+    align-items: start;
+    position: absolute;
+    background-color: rgb(212, 176, 176);
+
+}

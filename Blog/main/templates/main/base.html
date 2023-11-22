@@ -8,29 +8,27 @@
   </head>
   <body style="min-height: 200vh;">
 
-    <div class="container">
+    <div class="container" style=" width: 100%;  background-color:  rgba(172, 206, 229, 0.77);">
 
-    <nav class="navbar navbar-expand-lg bg-body-tertiary rounded" aria-label="Eleventh navbar example">
-        <div class="container-fluid">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary rounded " aria-label="Eleventh navbar example" >
+        <div class="container-fluid"  style=" width: 100%;">
           <a class="navbar-brand" href="#">blog</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample09" aria-controls="navbarsExample09" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
   
           <div class="collapse navbar-collapse" id="navbarsExample09">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="gap: 20px; padding: 20px;">
               <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="#">Home</a>
               </li>
               <li class="nav-item">
-                <a class="btn btn-primary" href="{% url 'blogs:add' %}" >Add blog</a>
+                <a class="btn btn-primary" href="{% url 'blogs:add' %}" >add blog</a>
               </li>
               <li class="nav-item">
                 <a class="btn btn-primary" href="{% url 'blogs:read' %}" >read blog</a>
          
-            <form role="search">
-              <input class="form-control" type="search" placeholder="Search" aria-label="Search">
-            </form>
+          
           </div>
         </div>
       </nav>
