@@ -23,9 +23,44 @@ def displayBlog(request : HttpRequest):
 def detailsBlog(request : HttpRequest ,blog_id):
     try: 
        blog = Blog.objects.get(id = blog_id)
+       
     except  Exception as e:
 
        return render(request, "main/not_found.html")
        
     return render(request ,"blog/details.html" , {"blog" : blog})
+
+def updateBlog(request : HttpRequest , blog_id):
+    try:
+            blog = Blog.objects.get(id = blog_id)
+
+            if request.method == "POST":
+                blog.title = request.POST["title"]
+                blog.content = request.POST["content"]
+                blog.is_published=  request.POST["is_published"]
+                blog.published_at = request.POST["published_at"]
+                blog.save()
+
+                return redirect( "blog:detailsBlog" , blog_id = blog.id)
+    
+           
+            return render(request ,"blog/update.html" , {"blog" : blog})                    
+    except  Exception as e:
+
+       return render(request, "main/not_found.html")
+    
+    
+   
+
+def deleteBLog(request : HttpRequest , blog_id):
+     try:
+        blog = Blog.objects.get(id = blog_id)
+        blog.delete()
+
+        return redirect("blog:displayBlog")
+     except  Exception as e:
+
+       return render(request, "main/not_found.html")
+       
+
 

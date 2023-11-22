@@ -9,7 +9,7 @@
     <h1 class = "text-uppercase fw-bold fs-1 text-center">Details Post</h1>
 
     
-        <table class="table">
+        <table class="table mb-3">
             <thead>
               <tr>
                 <th scope="col">Title</th>
@@ -33,13 +33,17 @@
                   </tr>
                   </tbody>
             </div>
-              
-
-
-      
-
-    </table>
-
+               
+        </table>
+    <div class="dropdown">
+        <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Edit
+        </button>
+        <ul class="dropdown-menu ">
+          <li><a class="dropdown-item" href="{% url 'blog:updateBlog' blog.id %}">Update</a></li>
+          <li><a class="dropdown-item" href="{% url 'blog:deleteBlog' blog.id %}">Delete</a></li>
+        </ul>
+      </div>
 </section>
 </div>
 
