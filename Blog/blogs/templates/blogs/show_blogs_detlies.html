@@ -1,0 +1,23 @@
+{% extends 'home/base.html' %}
+{% block title %}
+All blogs
+{% endblock %}
+
+{% block body %}
+
+<div class="container">
+    <div class="row">
+        <div class="col ">
+            <div class="d-flex flex-column gap-2 border border-2 rounded-1 shadow p-1">
+                <h1> Title: {{blogs.title}}</h1>
+                <h3> Publisher name: {{ blogs.name_publisher }}</h3>
+                <h3> Location: {{ blogs.published_location }}</h3>
+                <h3> Content: {{blogs.content}}</h3>
+                <h4> Is published: {{blogs.is_published}}</h4>
+                <h4> Publihsed at: {{blogs.published_at}}</h4>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
