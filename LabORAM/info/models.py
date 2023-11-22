@@ -7,3 +7,6 @@ class Info(models.Model):
     contant = models.TextField()
     is_published= models.BooleanField()
     published_at = models.DateField()
+
+
+
