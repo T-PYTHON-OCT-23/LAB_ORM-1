@@ -4,17 +4,24 @@
 
 {% block content %}
 
-<section class="container">
-
-    <h1>All Blogs</h1>
-
-    <div class="row">
+<section class="container-2 m-3 p-5">
+    <h1 class="display-1 text-center">All Blogs</h1>
+    <h3 class="display-6 ">Welcome to blogs page <a class="btn btn-primary" href="{% url 'blogs:add_blog_view' %}">Add new blog</a></h3>
         {% for blog in blogs %}
-            <div class="col-4">
-                <div class="d-flex flex-column gap-2 p-3 border border-1 rounded-4 shadow">
-                    <a href="{% url 'blogs:blogs_details_view' blog.id %}"><h2>{{ blog.title }}</h2></a>
+            <div class="col-12 p-4">
+                <div class="card p-3">
+                    <a href="{% url 'blogs:blogs_details_view' blog.id %}" class="link-info link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"><h2>{{ blog.title }}</h2></a>
                     <h4>is published:{{blog.is_published}}</h4>
                     <h4>published at : {{ blog.published_at }} </h4>
+                    <div class="btn-group">
+                        <button type="button" class="btn  btn-outline-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                        Edit blog
+                        </button>
+                        <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{% url 'blogs:update_blog_view' blog.id %}">Update blog</a></li>
+                        <li><a class="dropdown-item" href="{% url 'blogs:delete_blog_view' blog.id %}">Delete blog</a></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         {% endfor %}
@@ -22,5 +29,6 @@
     </div>
 
 </section>
+
 
 {% endblock %}

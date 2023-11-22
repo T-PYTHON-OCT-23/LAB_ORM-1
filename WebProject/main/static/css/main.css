@@ -1,0 +1,15 @@
+.title h1{
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+body{
+    background-color:thistle;
+}
+
+.material-symbols-outlined{
+    font-size: 60px;
+}

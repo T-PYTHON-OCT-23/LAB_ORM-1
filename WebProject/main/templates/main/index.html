@@ -2,17 +2,15 @@
 {% load static %}
 
 {% block content %}
-    
     <div class="container">
-        <div class="row mt-3">
-            <div class="col-12 col-md-6 order-2 order-md-1">
-                <div class="d-flex flex-column gap-2 h-100 justify-content-center align-items-start">
-                    <h2 class="display-1">Welcome<br>to Blogs Website<span class="material-symbols-outlined">favorite</span></h2>
-                    <p>A blog website is a site that is updated with new information on an ongoing basis and normally consists of a collection of posts.</p>
-                </div>
+        <div class="row">
+            <div class="col-6 text-center mt-5">
+                <h2 class="display-1">Welcome<br>to Blogs Website<span class="material-symbols-outlined">favorite</span></h2>
+                <p>A blog website is a site that is updated with new information on an ongoing basis and normally consists of a collection of posts.</p>
+                <p>A blog, short for weblog, is a frequently updated web page used for personal commentary or business content. Blogs are often interactive and include sections at the bottom of individual blog posts where readers can leave comments.</p>
             </div>
-            <div class="col order-1 order-md-2 ">
-                <img class="w-100 rounded-5" src="{% static 'images/blog.jpg' %}" />
+            <div class="col-6">
+                <img class="h-100 w-100" src="{% static 'images/blog.jpg' %}" />
             </div>
         </div>
 
