@@ -16,10 +16,15 @@ def add_blog_view(request: HttpRequest):
 
 def display_blog_view(request: HttpRequest):
 
-     post = Blog.objects.all()
+     posts = Blog.objects.all()
 
-     return render(request, 'post/display_blog.html', {'posts': post})
+     return render(request, 'post/display_blog.html', {'posts': posts})
 
 
 
  
+def post_detail_view(request:HttpRequest, post_id):
+
+    post= Blog.objects.get(id=post_id)
+
+    return render(request, "post/post_detail.html", {"post" : post})
