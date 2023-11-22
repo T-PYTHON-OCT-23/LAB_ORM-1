@@ -11,7 +11,7 @@
     text-align: center;
    
 }
-.container-add{
+.container-add {
     background-color: rgb(187, 187, 187);
     font-size: 20px;
     font-family: 'Anton', sans-serif;
@@ -27,4 +27,13 @@
     text-align: center;
     border-radius: 10px;
 
+}
+.nopage-contauner{
+    background-color: rgb(187, 187, 187);
+    padding: 38vh 5vw;
+}
+.nopage-contauner h2{
+    font-size: 90px;
+    font-family: 'Anton', sans-serif;
+    font-family: 'Patua One', serif;
 }

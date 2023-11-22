@@ -22,4 +22,14 @@ def home_blog_views(request: HttpRequest):
 
     return render(request, "blog/home_blog.html", {"blog":blog})
 
+def details_blog_views(request: HttpRequest,blog_id):
+        try:
+            blogs=Blog.objects.get(id=blog_id)
+           
+        except:
+            return render(request, "blog/page_not_found.html")
+         
+        return render(request,"blog/details_blog.html",{"blogs":blogs})
+             
+
 
