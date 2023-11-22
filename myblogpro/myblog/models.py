@@ -6,5 +6,5 @@ class blog(models.Model):
 
     name = models.CharField(max_length=2048)
     plot = models.TextField()
-    rating = models.BooleanField()
+    rating = models.BooleanField(default=False)
     release_date = models.DateField()

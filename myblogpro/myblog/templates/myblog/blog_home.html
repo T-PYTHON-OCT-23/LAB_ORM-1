@@ -1,6 +1,6 @@
 {% extends 'main/base.html' %}
 
-{% block title %} All Movies {% endblock %}
+{% block title %} All blog {% endblock %}
 
 {% block content %}
 
@@ -14,7 +14,7 @@
 
             <div class="col-4">
                 <div class="d-flex flex-column gap-2 p-3 border border-1 rounded-4 shadow">
-                    <h2>{{ blog.name }}</h2>
+                    <h2>{{ myblog.name }}</h2>
                     <h4> Rating:  {{blog.rating}}</h4>
                     <h4>Release Date: {{ blog.release_date }} </h4>
                 </div>
