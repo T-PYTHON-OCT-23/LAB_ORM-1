@@ -1,0 +1,30 @@
+{% extends 'main/base.html' %}
+
+{% block title %} All Movies {% endblock %}
+
+{% block content %}
+
+<section class="container">
+
+    <h1>All blog</h1>
+
+    <div class="row">
+
+        {% for i in blog %}
+    
+            <div class="col-4">
+                <div class="d-flex flex-column gap-2 p-3 border border-1 rounded-4 shadow">
+                    <h2>{{ i.titl }}</h2>
+                    <h4> Content:  {{i.content}}</h4>
+                    <h4>Release Date: {{ i.published_at }} </h4>
+                </div>
+            </div>
+            
+
+
+        {% endfor %}
+
+    </div>
+
+</section>
+{% endblock %}
