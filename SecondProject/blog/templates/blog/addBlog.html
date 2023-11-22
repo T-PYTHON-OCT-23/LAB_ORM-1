@@ -16,15 +16,15 @@
             <form action="{% url 'blog:add_blog_view' %}" method="POST">
                 {% csrf_token %}
                 <label>Blog Title:</label>
-                <input class="form-control" type="text" name="Title" placeholder="Enter Blog Titel" />
+                <input class="form-control" type="text" name="title" placeholder="Enter Blog Titel" />
 
                 <label>Content:</label>
-                <textarea class="form-control" name="Content"></textarea>
+                <textarea class="form-control" name="content"></textarea>
                 <br>
-              <lable>Is Published? </lable>
-                  <input type="radio"  name="is_published" value="true">
+              <p>Is Published? </p>
+                  <input type="radio"  name="is_published" value="True">
                   <label >Yes</label>
-                  <input type="radio"  name="is_published" value="false">
+                  <input type="radio"  name="is_published" value="False">
                   <label>No</label><br>
 
                 <br>

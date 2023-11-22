@@ -10,18 +10,19 @@
 
     <div class="row">
 
-        {% for i in blog %}
+        {% for post in blog %}
     
             <div class="col-4">
+
                 <div class="d-flex flex-column gap-2 p-3 border border-1 rounded-4 shadow">
-                    <h2>{{ i.titl }}</h2>
-                    <h4> Content:  {{i.content}}</h4>
-                    <h4>Release Date: {{ i.published_at }} </h4>
+              
+          
+                <a href="{% url 'blog:blog_detail_view'  post.id %}"> <h2>{{ post.title }}</h2></a>
+                    <h4> Content:  {{post.content}}</h4>
+                    <h4>Release Date: {{ post.published_at }} </h4>
                 </div>
             </div>
-            
-
-
+        
         {% endfor %}
 
     </div>
