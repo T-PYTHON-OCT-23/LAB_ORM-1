@@ -29,3 +29,26 @@ def blog_detail_view(request:HttpRequest, blog_id):
         return render(request,"blogs/detail.html" , {"blog":blog})
     except Exception as e:
         return redirect("blogs:not_found_view")
+    
+def blog_update_view(request:HttpRequest, blog_id):
+    blog = Blog.objects.get(id=blog_id)
+    if request.method == "POST":
+        blog.title = request.POST["title"]
+        blog.content = request.POST["content"]
+        blog.is_published = request.POST["is_published"]
+        blog.published_at =request.POST["published_at"]
+        blog.save()
+        
+        return redirect('blogs:blog_detail_view',blog_id=blog_id)
+
+    
+    return render(request,"blogs/update.html", {"blog" : blog})
+
+def blog_delete_view(request:HttpRequest, blog_id):
+        blog = Blog.objects.get(id=blog_id)
+        blog.delete()
+        return redirect("blogs:show_blogs_view")
+        
+
+    
+    
