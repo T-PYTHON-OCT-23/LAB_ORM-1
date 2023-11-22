@@ -11,8 +11,6 @@
     <div class="row">
 
         <div class="col-6">
-            <!-- form for submitting the data -->
-
             <form action="{% url 'posts:add_blog_view' %}" method="POST">
                 {% csrf_token %}
                 <label>Title:</label>
@@ -22,13 +20,9 @@
                 <textarea class="form-control" name="content"></textarea>
                 
                 <label>is published</label>
-                
                 <input type="checkbox" value="True" name="is_publishd" />
                 <br>
 
-                <label>blog published Date:</label>
-                <input class="form-control" name="publishd_at" type="date" />
-                <br>
                 <input class="btn btn-primary" type="submit" value="post blog" />
             </form>
 
