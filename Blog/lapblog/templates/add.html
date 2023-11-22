@@ -1,0 +1,40 @@
+{% extends 'main/base.html' %}
+
+{% block title %} Add New Blog {% endblock %}
+
+{% block content %}
+
+<section class="container">
+
+    <h1>Add new Blog</h1>
+
+    <div class="row">
+
+        <div class="col-6">
+            <!-- form for submitting the data -->
+
+            <form action="{% url 'lapblog:add_blog_view' %}" method="POST">
+                {% csrf_token %}
+                <label>Blog Title:</label>
+                <input class="form-control" type="text" name="Blog" placeholder="Blog Title" />
+
+                <label>Blog Contant:</label>
+                <textarea class="form-control" name="Contan"></textarea>
+
+                
+
+                <label>Blog is_published:</label>
+                <input class="form-control" name="is_published" type="Boolean" />
+                <label>Blog  published_atd:</label>
+                <input class="form-control" name=" published_atd" type="DateTime" />
+
+                <input class="btn btn-primary" type="submit" value="Create Blog" />
+            </form>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

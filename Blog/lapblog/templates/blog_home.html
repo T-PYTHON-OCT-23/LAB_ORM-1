@@ -1,0 +1,28 @@
+{% extends 'main/base.html' %}
+
+{% block title %} All Blogs {% endblock %}
+
+{% block content %}
+
+<section class="container">
+
+    <h1>All Blogs</h1>
+
+    <div class="row">
+
+        {% for blog in lapblog %}
+
+            <div class="col-4">
+                <div class="d-flex flex-column gap-2 p-3 border border-1 rounded-4 shadow">
+                    <h2>{{ Web.Title }}</h2>
+                    <h4>  Contant :  {{Web. Contant }}</h4>
+                    <h4>is_published: {{ Web.is_published }} </h4>
+                    <h4>published_at: {{ Web.published_at }} </h4>
+                </div>
+            </div>
+            
+
+
+        {% endfor %}
+
+    </div>
