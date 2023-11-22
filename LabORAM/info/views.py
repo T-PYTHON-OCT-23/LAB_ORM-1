@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect,get_object_or_404
 from django.http import HttpRequest, HttpResponse
 from .models import Info
 
@@ -22,7 +22,16 @@ def add_info_view(request: HttpRequest):
 
 
 def info_home_view(request: HttpRequest):
-
     info = Info.objects.all()
-    
+    print(info)
     return render(request, "info/info_home.html", {"info" : info})
+
+    
+        
+def info_details_view(request: HttpRequest,info_id):
+
+    
+    info = get_object_or_404(Info,id=info_id)
+    
+    
+    return render(request, "info/info_details.html", {"info" : info})

@@ -1,6 +1,6 @@
 {% extends 'main/base.html' %}
 
-{% block title %} All Movies {% endblock %}
+{% block title %} {{i.title}} {% endblock %}
 
 {% block content %}
 
@@ -13,11 +13,15 @@
         {% for i in info %}
 
             <div class="col-4">
+                
                 <div class="d-flex flex-column gap-2 p-3 border border-1 rounded-4 shadow">
-                    <h2>{{ i.title }}</h2>
+                    
+                    <a href="{% url 'info:info_details_view' i.id %}"> <h2>{{ i.title }} </h2></a>
                     <h4> Contant:  {{i.contant}}</h4>
                     <h4>Release Date: {{ i.published_at }} </h4>
+                
                 </div>
+            
             </div>
             
 
