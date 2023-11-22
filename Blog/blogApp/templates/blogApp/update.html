@@ -1,28 +1,27 @@
 {% extends 'main/base.html'  %}
 
 
-{% block title %}   Add Post in Blog  {%endblock%}
+{% block title %}   update Blog  {%endblock%}
 
 {% block content %} 
 
 
 <section class="container">
-    <h1>Add Post in Blog</h1>
+    <h1>Update Page</h1>
     <div class="row">
         <div class="col-6">
-            <!-- form for submitting the data -->
 
-            <form action="{% url 'blogApp:add_post_view' %}" method="POST">
+            <form action="{% url 'blogApp:update_view' %}" method="POST">
                 {% csrf_token %}
                 <label>Blog Title:</label>
-                <input class="form-control" type="text" name="title" placeholder="Blog Title" />
+                <input class="form-control" type="text" name="title" placeholder="Blog Title" value="{{blog.title}}" />
 
                 <label>Blog Content:</label>
-                <textarea class="form-control" name="content" placeholder="write the content .."></textarea>
+                <textarea class="form-control" name="content" placeholder="write the content ..">{{blog.content}} </textarea>
 
                 <label>is published?</label>
                 <select name="is_published" class="form-select" >
-                    <option value="True"> Yes</option>
+                    <option value="True" > Yes</option>
                     <option value="False"> No</option>
                 </select>
 
