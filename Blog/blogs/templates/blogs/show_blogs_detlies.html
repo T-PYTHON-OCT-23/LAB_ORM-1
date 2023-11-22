@@ -7,14 +7,25 @@ All blogs
 
 <div class="container">
     <div class="row">
-        <div class="col ">
-            <div class="d-flex flex-column gap-2 border border-2 rounded-1 shadow p-1">
+        <div class="col-9 ">
+            <div class="d-flex flex-column gap-2 border border-2 rounded-1 shadow p-1 mt-2">
                 <h1> Title: {{blogs.title}}</h1>
-                <h3> Publisher name: {{ blogs.name_publisher }}</h3>
-                <h3> Location: {{ blogs.published_location }}</h3>
                 <h3> Content: {{blogs.content}}</h3>
                 <h4> Is published: {{blogs.is_published}}</h4>
                 <h4> Publihsed at: {{blogs.published_at}}</h4>
+                <h3> Location: {{ blogs.published_location }}</h3>
+                <h3> Publisher name: {{ blogs.name_publisher }}</h3>
+            </div>
+        </div>
+        <div class="clo-2">
+            <div class="dropdown-center">
+                <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Action
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="{% url 'blogs:update_blogs_views' blogs.id %}">Edit</a></li>
+                  <li><a class="dropdown-item" href="{% url 'blogs:delete_blogs_views' blogs.id %}">Delete</a></li>
+                </ul>
             </div>
         </div>
     </div>
