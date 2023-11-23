@@ -7,12 +7,11 @@ def addBlog(request : HttpRequest):
 
     if request.method == "POST":
         
-        newBlog = Blog(title = request.POST["title"] , content = request.POST["content"] ,
-                       is_published=  request.POST["is_published"] , published_at = request.POST["published_at"])
+        newBlog = Blog(title = request.POST["title"] , content = request.POST["content"] ,is_published=  request.POST["is_published"] , published_at = request.POST["published_at"] , category = request.POST["category"] , image = request.FILES["image"])
         newBlog.save()
         return redirect("blog:displayBlog")
 
-    return render(request, "blog/addBlog.html")
+    return render(request, "blog/addBlog.html" , {"categories" : Blog.categories})
 
 
 def displayBlog(request : HttpRequest):
@@ -39,12 +38,14 @@ def updateBlog(request : HttpRequest , blog_id):
                 blog.content = request.POST["content"]
                 blog.is_published=  request.POST["is_published"]
                 blog.published_at = request.POST["published_at"]
+                blog.category = request.POST["category"]
+                blog.image = request.FILES["image"]
                 blog.save()
 
                 return redirect( "blog:detailsBlog" , blog_id = blog.id)
     
            
-            return render(request ,"blog/update.html" , {"blog" : blog})                    
+            return render(request ,"blog/update.html" , {"blog" : blog , "categories" : Blog.categories})                    
     except  Exception as e:
 
        return render(request, "main/not_found.html")

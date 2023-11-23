@@ -15,7 +15,9 @@
                 <th scope="col">Title</th>
                 <th scope="col">Content</th>
                 <th scope="col">Publish status</th>
+                <th scope="col">Category</th>
                 <th scope="col"> Published Time </th>
+                <th scope="col"> Image </th>
               </tr>
             </thead>
      
@@ -29,7 +31,9 @@
                     <td> {{ blog.title }}</td>
                     <td>{{blog.content}}</td>
                     <td> {{ blog.is_published }}</td>
+                    <td> {{ blog.category }}</td>
                     <td> {{ blog.published_at }}</td>
+                    <td><img width="70px" height="70px" src="{{blog.image.url}}" /></td>
                   </tr>
                   </tbody>
             </div>
