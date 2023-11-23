@@ -31,14 +31,15 @@ def details_blog_views(request: HttpRequest,blog_id):
          
         return render(request,"blog/details_blog.html",{"blogs":blogs})
              
-def updated_blog_views(request:HttpRequest, blog_id):
+def updated_blog(request:HttpRequest, blog_id):
     blogs= Blog.objects.get(id=blog_id)
 
     if request.method == "POST":
         blogs.title = request.POST["title"]
         blogs.content = request.POST["content"]
         blogs.is_published = request.POST["is_published"]
-        blogs.published_at = request.POST["published_at"]
+        
+        blogs.published_at=timezone.now()
         blogs.save()
 
         return redirect('blog:details_blog_views', blog_id=blogs.id)
