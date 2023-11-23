@@ -56,4 +56,4 @@ def delete_blog_view(request: HttpRequest, blog_id):
     blog = Web.objects.get(id = blog_id)
     Web.delete()
 
-    return redirect("lapblog:blog_home_view")
+    return redirect("lapblog:blog_home_view")                        
