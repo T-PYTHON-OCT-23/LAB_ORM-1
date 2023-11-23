@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect,get_object_or_404
+from django.shortcuts import render, redirect
 from django.http import HttpRequest, HttpResponse
 from .models import Blog
 from django.utils import timezone
@@ -19,14 +19,46 @@ def display_blog_view(request: HttpRequest):
 
      posts = Blog.objects.all()
 
-     return render(request, 'post/display_blog.html', {'posts': posts})
+     return render(request, "post/display_blog.html", {"posts": posts})
 
 
+def post_detail_view(request:HttpRequest, post_id):
+ 
+    try:
+      post=Blog.objects.get(id=post_id )
+
+    except Exception as e:
+        return render(request, "post/not_exist.html.")
+        
+    return render(request, "post/post_detail.html", {"post" : post})
+
+
+
+def not_exist_view(request:HttpRequest):
+
+   return render(request, "post/not_exist.html.")
+
+
+
+def update_post_view(request: HttpRequest, post_id):
+
+    post = Blog.objects.get(id=post_id)
+
+    if request.method == "POST":
+        post.title = request.POST["title"]
+        post.content= request.POST["content"]
+        post.is_published = request.POST["is_published"]
+        post.published_at = request.POST["published_at"]
+        post.save()
+
+        return redirect('post:post_detail_view', post_id=post.id)
+
+    return render(request, "post/update.html", {"post" : post})
 
  
-def post_detail_view(request:HttpRequest, post_id):
+def delete_post_view(request: HttpRequest, post_id):
 
-    post=get_object_or_404(Blog,id=post_id )
+    post = Blog.objects.get(id=post_id)
+    post.delete()
 
-
-    return render(request, "post/post_detail.html", {"post" : post})
+    return redirect("post:display_blog_view")

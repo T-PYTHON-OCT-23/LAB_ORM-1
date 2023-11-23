@@ -3,6 +3,16 @@
     margin: 0px;
     box-sizing: border-box;
 }
-.container{
-    background-color: rgba(255, 192, 203, 0.507);
+
+body{
+    background-color: silver;
 }
+
+.wrapper {
+    min-height: 70vh;
+}
+
+p {
+    white-space: pre-wrap;
+}
+

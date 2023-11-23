@@ -7,26 +7,27 @@
 <section class="container">
 
     <h1>Add new post</h1>
+    
     <div class="row">
 
         <div class="col-6">
 
             <form action="{% url 'post:add_blog_view' %}" method="POST">
                 {% csrf_token %}
-                <label for="id_name">Title Name:</label>
-                <input id="id_name" class="form-control" type="text" name="title" placeholder="Title" />
+                <label >Title Name:</label>
+                <input  class="form-control" type="text" name="title" placeholder="Title" />
 
-                <label for="id_content">Post Content:</label>
-                <textarea id="id_content" class="form-control" name="content"></textarea>
+                <label >Post Content:</label>
+                <textarea  class="form-control" name="content"></textarea>
 
-                <label for="id_is_published">Has it been published post?</label>
-                <select id="id_is_published" name="is_published" class="form-select">
+                <label >Has it been published post ?</label>
+                <select  name="is_published" class="form-select">
                     <option value="True">Yes</option>
                     <option value="False">No</option>
                 </select>
 
-                <label for="id_published_at">Published Date:</label>
-                <input id="id_published_at" class="form-control" name="published_at" type="date" />
+                <label >Published Date:</label>
+                <input  class="form-control" name="published_at" type="date" />
 
                 <input class="btn btn-primary" type="submit" value="Create Post" />
             </form>
