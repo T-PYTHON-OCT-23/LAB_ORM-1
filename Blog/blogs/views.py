@@ -6,12 +6,12 @@ from .models import Blogs
 def add_blogs_views(request:HttpRequest):
 
     if request.method == 'POST':
-        new_blogs = Blogs(title=request.POST['title'],content=request.POST['content'],is_published=request.POST['is_published'],published_at=request.POST['published_at'],name_publisher=request.POST['name_publisher'],published_location=request.POST['published_location'])
+        new_blogs = Blogs(title=request.POST['title'],content=request.POST['content'],is_published=request.POST['is_published'],published_at=request.POST['published_at'],name_publisher=request.POST['name_publisher'],published_location=request.POST['published_location'],catagory=request.POST['catagory'],images=request.FILES['images'])
         new_blogs.save()
         
         return redirect('blogs:show_blogs_views')
     
-    return render(request, 'blogs/add_blogs.html')
+    return render(request, 'blogs/add_blogs.html',{'catagory':Blogs.categories.choices})
 
 def show_blogs_views(request:HttpRequest):
     blogs = Blogs.objects.all()
@@ -34,10 +34,12 @@ def update_blogs_views(request:HttpRequest,mo_id):
         blogs.content = request.POST['content']
         blogs.is_published = request.POST['is_published']
         blogs.published_at = request.POST['published_at']
+        blogs.images = request.FILES['images']
+        blogs.catagory = request.POST['catagory']
         blogs.save()
         return redirect('blogs:show_blogs_detils_view',mo_id=blogs.id)
 
-    return render(request,'blogs/update_blogs.html',{'blogs':blogs})
+    return render(request,'blogs/update_blogs.html',{'blogs':blogs,'cat':Blogs.categories.choices})
 
 def delete_blogs_views(request:HttpRequest,mo_id):
     blogs = Blogs.objects.get(id=mo_id)

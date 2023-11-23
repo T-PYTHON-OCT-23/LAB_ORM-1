@@ -7,7 +7,7 @@ Add blogs
     <div class="row">
         <div class="col-6">
             <div class="d-flex flex-column">
-                <form action="{% url 'blogs:add_blogs_views' %}" method="POST">
+                <form action="{% url 'blogs:add_blogs_views' %}" method="POST" enctype="multipart/form-data">
                     {% csrf_token %}
                     <h1> Add Blogs </h1>
 
@@ -25,6 +25,19 @@ Add blogs
 
                     <label> Content: </label>
                     <textarea name="content" class="form-control"></textarea>
+
+                    <label> Catagory:</label>
+                    {% for k,v in catagory %}
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="catagory" id="{{k}}" value="{{v}}">
+                        <label class="form-check-label" for="{{k}}">
+                            {{k}}
+                        </label>
+                    </div>
+                    {% endfor %}
+
+                    <label>Upload image:</label>
+                    <input type="file" name="images" accept="image/*" class="form-control">
 
                     <label> Is published: </label>
                     <select name="is_published" class="form-control">
