@@ -1,0 +1,42 @@
+{% extends 'main/base.html' %}
+
+
+{% block title %} Update {{ blog.titel }}{% endblock %}
+
+
+{% block content %}
+    <div class="container mt-5"> 
+
+        <div class="row">
+            <h2>Update {{blog.titel}}:</h2>
+            <div class="col">
+
+                <form action="{% url 'blogs:update' blog.id %}" method="POST">
+
+                    {% csrf_token %}
+                <label>blog name:</label>
+                <input class="form-control" type="text" name="titel" placeholder="blog titel" value="{{blog.titel}}" />
+
+                <label>blog Content:</label>
+                <textarea class="form-control" name="content">{{blog.Content}}</textarea>
+
+                <label>is published:</label>
+                <select name="is_published" class="form-select">
+                    <option value="True"  {% if blog.is_published == True %} selected {% endif %}>True</option>
+                    <option value="False"{% if blog.is_published == False %} selected {% endif %} >False</option>
+                
+                </select>
+
+                <label>Published_at:</label>
+                <input class="form-control" name="Published_at" type="date" value="{{blog.Published_at|date:'Y-m-d' }}"/>
+
+                <input class="btn btn-primary mt-2" type="submit" value="Update Blog" />
+            
+
+                </form>
+
+            </div>
+        </div>
+
+    </div>
+{% endblock %}
