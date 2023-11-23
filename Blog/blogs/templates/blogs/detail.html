@@ -14,6 +14,8 @@
                 <div class="col-10 m-2">
                     <div class="d-flex flex-column gap-2 p-3 border border-1 rounded-4 shadow">
                         <h2>{{ blog.title }}</h2>
+                        <h3>{{ blog.category }}</h3>
+                        <img src="{{blog.poster.url}}" />
                         <div class="d-flex justify-content-between">
                             <h5>Published at : {{ blog.published_at }} </h5>
                             <div class="dropdown">
