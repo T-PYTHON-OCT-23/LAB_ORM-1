@@ -8,7 +8,7 @@ def add_blog(request:HttpRequest):
     if request.method == 'POST':
         
         try:
-            new_published = Published(title=request.POST['title'],content =request.POST['content'],is_published=request.POST['is_published'],published_at=request.POST['published_at'])
+            new_published = Published(title=request.POST['title'],content =request.POST['content'],is_published=request.POST['is_published'],published_at=request.POST['published_at'],image = request.FILES["image"],blog_content=request.POST["blog_content"])
             
             new_published.save()
         except Exception:
@@ -16,7 +16,7 @@ def add_blog(request:HttpRequest):
     
         return redirect('blog_op:publications')
 
-    return render (request,'blog_op/add.html')
+    return render (request,'blog_op/add.html',{"blog_content": Published.blogs_content})
 
 def publications(request:HttpRequest):
     pub = Published.objects.all()
@@ -39,10 +39,12 @@ def update(request:HttpRequest,published_id):
         published.title = request.POST["title"]
         published.content =request.POST['content']
         published.published_at=request.POST['published_at']
+        published.blog_content = request.POST['blog_content']
+        published.image = request.FILES["image"]
         published.save()
         redirect('blog_op:publications')
         
-    return render(request,'blog_op/update.html',{'update':published})
+    return render(request,'blog_op/update.html',{'update':published,"blog_content": Published.blogs_content})
 
 
 
