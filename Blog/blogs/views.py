@@ -6,12 +6,12 @@ from .models import Blog
 
 def add_blogs_view(request:HttpRequest):
     if request.method == "POST":
-        new_blogs = Blog(title=request.POST["title"], content=request.POST["content"], is_published = request.POST["is_published"], published_at = request.POST["published_at"])
+        new_blogs = Blog(title=request.POST["title"], content=request.POST["content"], is_published = request.POST["is_published"], published_at = request.POST["published_at"], poster=request.FILES["poster"])
         new_blogs.save()
         return redirect("blogs:show_blogs_view")
 
     
-    return render(request,"blogs/add.html")
+    return render(request,"blogs/add.html", {"categories" : Blog.categories})
 
 def show_blogs_view(request:HttpRequest):
     
@@ -42,7 +42,7 @@ def blog_update_view(request:HttpRequest, blog_id):
         return redirect('blogs:blog_detail_view',blog_id=blog_id)
 
     
-    return render(request,"blogs/update.html", {"blog" : blog})
+    return render(request,"blogs/update.html", {"blog" : blog, "categories"  : Blog.categories})
 
 def blog_delete_view(request:HttpRequest, blog_id):
         blog = Blog.objects.get(id=blog_id)
