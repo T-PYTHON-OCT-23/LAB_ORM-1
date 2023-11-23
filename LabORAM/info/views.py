@@ -12,12 +12,12 @@ def add_info_view(request: HttpRequest):
     #Creating a new entry into the database for a info
 
     if request.method == "POST":
-        new_info = Info(title=request.POST["title"], contant=request.POST["contant"], is_published=request.POST["is_published"], published_at=request.POST["published_at"])
+        new_info = Info(title=request.POST["title"], contant=request.POST["contant"], is_published=request.POST["is_published"], published_at=request.POST["published_at"],category=request.POST["category"], poster=request.FILES["poster"])
         new_info.save()
 
         return redirect("info:info_home_view")
 
-    return render(request, "info/add.html")
+    return render(request, "info/add.html", {"categories" : Info.categories})
 
 
 
@@ -52,11 +52,13 @@ def update_info_view(request: HttpRequest, info_id):
         info.title = request.POST["title"]
         info.contant = request.POST["contant"]
         info.published_at = request.POST["published_at"]
+        info.poster=request.FILES["poster"]
+        info.category = request.POST["category"]
         info.save()
 
         return redirect('info:info_details_view', info_id=info.id)
 
-    return render(request, "info/update.html", {"info" : info})
+    return render(request, "info/update.html", {"info" : info,"categories"  : Info.categories})
 
 
 def delete_info_view(request: HttpRequest, info_id):

@@ -1,6 +1,6 @@
 {% extends 'main/base.html' %}
 
-{% block title %} {{i.title}} {% endblock %}
+{% block title %} {{info.title}} {% endblock %}
 
 {% block content %}
 
@@ -15,10 +15,12 @@
             <div class="col-4">
                 
                 <div class="d-flex flex-column gap-2 p-3 border border-1 rounded-4 shadow">
-                    
+                     <img src="{{i.poster.url}}"/>
                     <a href="{% url 'info:info_details_view' i.id %}"> <h2>{{ i.title }} </h2></a>
+
                     <h4> Contant:  {{i.contant}}</h4>
                     <h4>Release Date: {{ i.published_at }} </h4>
+                    <h4>Category:{{i.category}}</h4>
                 
                 </div>
             
