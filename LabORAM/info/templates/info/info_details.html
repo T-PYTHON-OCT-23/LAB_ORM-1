@@ -5,14 +5,28 @@
 {% block content %}
 <h1>Details About The Contant</h1>
 <section class="container pt-4">
-
-    <h1>{{ info.title }}</h1>
-    <p>{{ info.contant }}</p>
-    <p>{{info.published_at}}</p>
-
-    <div class="row  g-4 row-cols-1 row-cols-md-3">
-
+    <div class="row">
+        <div class="col">
+        <div class="d-flex flex-column gap-2">
+        <h1>{{ info.title }}</h1>
+        <p>{{ info.contant }}</p>
+        <div class="d-flex justify-content-between ">
+        <p>{{info.published_at}}</p>
+    <div class="dropdown">
+        <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Edit
+        </button>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="{% url 'info:update_info_view' info.id %}">Update</a></li>
+          <li><a class="dropdown-item" href="{% url 'info:delete_info_view' info.id %}">Delete</a></li>
+        </ul>
+      </div>
+        </div>
+        </div>
+        </div>
     </div>
+    
+    
 
 
 </section>

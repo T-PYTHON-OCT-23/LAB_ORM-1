@@ -9,7 +9,7 @@ from .models import Info
 
 def add_info_view(request: HttpRequest):
 
-    #Creating a new entry into the database for a movie
+    #Creating a new entry into the database for a info
 
     if request.method == "POST":
         new_info = Info(title=request.POST["title"], contant=request.POST["contant"], is_published=request.POST["is_published"], published_at=request.POST["published_at"])
@@ -35,3 +35,33 @@ def info_details_view(request: HttpRequest,info_id):
     
     
     return render(request, "info/info_details.html", {"info" : info})
+
+
+def info_detail_view(request:HttpRequest, info_id):
+
+    info = Info.objects.get(id=info_id)
+
+    return render(request, "info/info_details.html", {"info" : info})
+
+
+def update_info_view(request: HttpRequest, info_id):
+
+    info = Info.objects.get(id=info_id)
+
+    if request.method == "POST":
+        info.title = request.POST["title"]
+        info.contant = request.POST["contant"]
+        info.published_at = request.POST["published_at"]
+        info.save()
+
+        return redirect('info:info_details_view', info_id=info.id)
+
+    return render(request, "info/update.html", {"info" : info})
+
+
+def delete_info_view(request: HttpRequest, info_id):
+
+    info = Info.objects.get(id=info_id)
+    info.delete()
+
+    return redirect("info:info_home_view")
