@@ -13,7 +13,7 @@
         <div class="col-6">
             <!-- form for submitting the data -->
 
-            <form action="{% url 'lapblog:add_blog_view' %}" method="POST">
+            <form action="{% url 'lapblog:add_blog_view' %}" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
                 <label>Blog Title:</label>
                 <input class="form-control" type="text" name="Title" placeholder="Blog Title" />
@@ -21,12 +21,24 @@
                 <label>Blog Contant:</label>
                 <textarea class="form-control" name="Contant"></textarea>
 
-                
+                <label>Category</label>
+
+                <label>Category:</label>
+                {% for key, value in categories.choices %}
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="category" id="{{key}}" value="{{key}}" {% if movie.category == key %} checked {% endif %}>
+                        <label class="form-check-label" for="{{key}}">
+                        {{value}}
+                        </label>
+                    </div>
+                {% endfor %}
 
                 <label>Blog is_published:</label>
                 <input class="form-control" name="is_published" type="Boolean" />
                 <label>Blog  published_atd:</label>
                 <input class="form-control" name="published_at" type="DateTime" />
+                <label>Blog Poster:</label>
+                <input type="file" name="poster"  class="form-control" accept="image/*"/>
 
                 <input class="btn btn-primary" type="submit" value="Create Blog" />
             </form>
