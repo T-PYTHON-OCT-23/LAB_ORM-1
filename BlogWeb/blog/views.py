@@ -32,21 +32,21 @@ def details_blog_views(request: HttpRequest,blog_id):
         return render(request,"blog/details_blog.html",{"blogs":blogs})
              
 def updated_blog_views(request:HttpRequest, blog_id):
-    blog= Blog.objects.get(id=blog_id)
+    blogs= Blog.objects.get(id=blog_id)
 
     if request.method == "POST":
-        blog.title = request.POST["title"]
-        blog.content = request.POST["content"]
-        blog.is_published = request.POST["is_published"]
-        blog.release_date = request.POST["published_at"]
-        blog.save()
+        blogs.title = request.POST["title"]
+        blogs.content = request.POST["content"]
+        blogs.is_published = request.POST["is_published"]
+        blogs.published_at = request.POST["published_at"]
+        blogs.save()
 
-        return redirect('blog:details_blog_views', blog_id=blog.id)
+        return redirect('blog:details_blog_views', blog_id=blogs.id)
      
-    return render(request,"blog/updated_blog.html",{"blog":blog})
+    return render(request,"blog/updated_blog.html",{"blogs":blogs})
 
 def delete_blog_views (request:HttpRequest, blog_id):
     blogs= Blog.objects.get(id=blog_id)
-    Blog.delete()
+    blogs.delete()
 
-    return render(request, "blog/home_blog.html")
+    return redirect( "blog:home_blog_views")

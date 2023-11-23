@@ -3,11 +3,11 @@
 {% block contant %}
 
 <div class="container-add">
-    <h1> Add New Post , let's go</h1>
+    <h1>Update {{blogs.title}}:</h1>
     <br>
     <div class="row">
         <div class="col-8">
-            <form action="{% url 'blog: updated_blog_views' %}"method="post">
+            <form action="{% url 'blog: updated_blog_views' blogs.id%}"method="post">
                 {% csrf_token %}
                 <label>Title blog: </label>
                 <input  class="form-control" type="text" name="title" placeholder="Enter bolg title ">
