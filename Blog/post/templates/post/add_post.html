@@ -12,7 +12,7 @@
 
         <div class="col-6">
 
-            <form action="{% url 'post:add_blog_view' %}" method="POST">
+            <form action="{% url 'post:add_blog_view' %}" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
                 <label >Title Name:</label>
                 <input  class="form-control" type="text" name="title" placeholder="Title" />
@@ -25,11 +25,22 @@
                     <option value="True">Yes</option>
                     <option value="False">No</option>
                 </select>
+                <label>Category</label>
 
+                {% for key, value in categories.choices %}
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="category" id="{{key}}" value="{{value}}">
+                        <label class="form-check-label" for="{{key}}">
+                        {{value}}
+                        </label>
+                    </div>
+                {% endfor %}
+                <label>Movie Poster:</label>
+                <input type="file" name="poster"  class="form-control" accept="image/*"/>
                 <label >Published Date:</label>
                 <input  class="form-control" name="published_at" type="date" />
 
-                <input class="btn btn-primary" type="submit" value="Create Post" />
+                <input class="btn btn-primary  mt-4" type="submit" value="Create Post" />
             </form>
 
         </div>
