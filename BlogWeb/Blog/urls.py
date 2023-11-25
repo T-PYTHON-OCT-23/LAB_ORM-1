@@ -8,5 +8,4 @@ urlpatterns = [
     path('doesnotexist/',views.not_exist,name='not_exist'),
     path('update/<blog_id>/',views.update_blog,name='update_blog'),
     path('delete/<blog_id>/',views.delete_blog,name='delete_blog')
-
 ]
