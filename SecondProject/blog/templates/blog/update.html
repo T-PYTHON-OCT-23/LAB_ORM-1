@@ -15,18 +15,28 @@
                    
                     <label>Blog Title:</label>
                     <input class="form-control" type="text" name="title" placeholder="Enter Blog Titel" value="{{blog.title}}" />
-
-
+                <br>
+                    <label>Category:</label>
+                    {% for key, value in categories.choices %}
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="category" id="{{key}}" value="{{key}}" {% if blog.category == key %} checked {% endif %}>
+                            <label class="form-check-label" for="{{key}}">
+                            {{value}}
+                            </label>
+                        </div>
+                    {% endfor %}
+    
+                    <br>
                     <label> Content: </label>
                     <textarea class="form-control" name="content">{{blog.content}}</textarea>
-                
+                    <br>
                   <p>Is Published? </p>
                       <input type="radio"  name="is_published" value="{{blog.is_published}}"  >
                       <label >Yes</label>
                       <input type="radio"  name="is_published" value="{{blog.is_published}}" >
                       <label>No</label><br>
     
-                    
+                    <br>
                     <label>Blog Published Date:</label>
                     <input class="form-control" name="published_at" type="date" value="{{blog.published_at|date:'Y-m-d' }}"/>
     <br>

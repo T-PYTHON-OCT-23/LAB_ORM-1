@@ -1,0 +1,34 @@
+{% extends 'main/base.html' %}
+
+{% block title %} All Movies {% endblock %}
+
+{% block content %}
+
+<section class="container">
+
+    <h1>All blog</h1>
+
+  
+    <div class="row  g-4 row-cols-1 row-cols-md-3">
+
+        {% for post in blog %}
+
+            <div class="col">
+                <div class="d-flex flex-column gap-2 p-3 border border-1 rounded-4 shadow h-100">
+                   <img src="{post.poster.url}" />
+                <a href="{% url 'blog:blog_detail_view'  post.id %}">
+                <h2>{{ post.title }}</h2></a>
+                <h5> Catogrey: {{post.category }}</h5>   
+                <h4> Content:  {{post.content}}</h4>
+                <h4>Release Date: {{ post.published_at }} </h4>
+                <h4>Release Date: {{ post.is_published}} </h4>
+
+                </div>
+            </div>
+        
+        {% endfor %}
+
+    </div>
+
+</section>
+{% endblock %}
