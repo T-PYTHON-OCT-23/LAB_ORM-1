@@ -26,6 +26,8 @@
                         <label class="form-check-label" for="{{key}}">{{value}}</label>
                     </div>
                 {% endfor %}
+                <img src="{{blog.image.url}}" height="200px" width="250"/>
+                <br>
                 <label>image:</label>
                 <input type="file" name="image"  class="form-control" accept="image/*"/>
                 <input class="btn btn-primary mt-4 mx-5" type="submit" value="Update blog" />
