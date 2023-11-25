@@ -7,12 +7,22 @@
     <div class="post-detail">
         <h2>{{ post.title }}</h2>
         <p class="post-meta">Published at: {{ post.published_at }}</p>
+        
+        <!-- Example img tag, replace 'your_image_path' with the actual image path -->
+        <img src="{{ post.image.url }}" alt="{{ post.title }}" class="post-image">
+
         <div class="post-content">
             {{ post.content | safe }}
         </div>
 
-        <!-- Add a link back to the post list -->
-        <a href="{% url 'blog:post_list' %}" class="btn btn-secondary">Back to Posts</a>
+        <!-- Action buttons -->
+        <div class="action-buttons">
+            <!-- Back to Posts button -->
+            <a href="{% url 'blog:post_list' %}" class="btn btn-secondary">Back to Posts</a>
+
+            <!-- Edit button -->
+            <a href="{% url 'blog:update_post' post.id %}" class="btn btn-primary">Edit</a>
+        </div>
     </div>
 
     <!-- Add inline styles for post detail (you can keep or modify them here) -->
@@ -38,19 +48,25 @@
             margin-bottom: 20px;
         }
 
+        .post-image {
+            max-width: 100%; /* Ensure the image doesn't exceed its container */
+            height: auto; /* Maintain aspect ratio */
+            margin-bottom: 20px; /* Add margin for space */
+        }
+
         .post-content {
             color: #555;
             line-height: 1.6;
-            margin-bottom: 20px; /* Add margin-bottom for space */
+            margin-bottom: 20px; /* Add margin for space */
         }
 
-        a {
-            color: #007BFF;
-            text-decoration: none;
+        .action-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
         }
 
         .btn {
-            display: inline-block;
             padding: 8px 16px;
             font-size: 14px;
             font-weight: bold;
@@ -58,6 +74,7 @@
             text-decoration: none;
             border-radius: 4px;
             cursor: pointer;
+            display: inline-block;
         }
 
         .btn-secondary {
@@ -65,8 +82,21 @@
             color: #fff;
         }
 
+        .btn-primary {
+            background-color: #007BFF;
+            color: #fff;
+        }
+
+        .btn:hover {
+            text-decoration: none;
+        }
+
         .btn-secondary:hover {
             background-color: #5A6268;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
         }
     </style>
 {% endblock %}
