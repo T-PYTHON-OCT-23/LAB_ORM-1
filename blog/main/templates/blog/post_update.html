@@ -7,7 +7,7 @@
   <h2>Edit Post</h2>
 
   <!-- Dropdown Menu for Edit/Delete -->
-  <form method="post" class="post-form">
+  <form method="post" enctype="multipart/form-data" class="post-form">
     {% csrf_token %}
     {{ form.as_p }}
 

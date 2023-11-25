@@ -3,18 +3,29 @@
 
 {% block title %}Blog Posts{% endblock %}
 
-{% block header %}Latest Blog Posts{% endblock %}
+{% block header %}Blog Posts{% endblock %}
 
 {% block content %}
     {% for post in posts %}
         <article>
             <h2><a href="{% url 'main:post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
             {% if post.is_published %}
-            <p>Published on: {{ post.published_at }}</p>
-           {% else %}
-            <p>Post is not Published</p>
-           {% endif %}
-            <p>{{ post.content }}</p>
+                <p>Published on: {{ post.published_at }}</p>
+                <p>{{ post.content }}</p>
+
+                <!-- Display category -->
+                <p>Category: {{ post.category }}</p>
+                <div style="width: 100%;">
+                    <!-- Display image -->
+                    {% if post.image %}
+                        <img src="{{ post.image.url }}" alt="{{ post.title }}" width="200rem"/>
+                    {% else %}
+                        <p>No image available</p>
+                    {% endif %}
+                </div>
+            {% else %}
+                <p>Post is not Published</p>
+            {% endif %}
         </article>
     {% endfor %}
 {% endblock %}
