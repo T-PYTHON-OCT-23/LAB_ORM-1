@@ -11,7 +11,7 @@
     <div class="row">
         <div class="col-6">
 
-            <form action="{% url 'blogApp:update_view' blog.id %}" method="POST">
+            <form action="{% url 'blogApp:update_view' blog.id %}" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
                 <label>Blog Title:</label>
                 <input class="form-control" type="text" name="title" placeholder="Blog Title" value="{{blog.title}}" />
@@ -24,11 +24,21 @@
                     <option value="True" > Yes</option>
                     <option value="False"> No</option>
                 </select>
+                <label>Category:</label>
+                {% for key, value in categories.choices %}
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="category" id="{{key}}" value="{{key}}" {% if movie.category == key %} checked {% endif %}>
+                        <label class="form-check-label" for="{{key}}">{{value}}</label>
+                    </div>
+                {% endfor %}
+                <label> Upload image for your blog: </label>
+                <input type="file" accept="image/*" name="image" class="form-control" /> 
+                
 
                 <label>published at?</label>
-                <input class="form-control" name="published_at" type="date" />  
+                <input class="form-control" name="published_at" type="date" value="{{movie.release_date|date:'Y-m-d' }}" />  
 
-                <input class="btn btn-primary" type="submit" value="add_post" />
+                <input class="btn btn-primary" type="submit" value="add post" />
             </form>
         </div>
     </div>

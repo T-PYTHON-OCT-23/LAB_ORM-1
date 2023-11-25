@@ -18,7 +18,7 @@
                 <div class="d-flex flex-column gap-2 p-3">
                    <h2>{{ blog.title }}</h2> 
 
-                   <form action="{% url 'blogApp:add_post_view' %}" method="POST">
+                   <form action="{% url 'blogApp:add_post_view' %}" method="POST" enctype="multipart/form-data">
                    <div class="d-flex justify-content-between">
                         <h5 class="opacity-50 "> {{ blog.published_at }}</h5>
                         <div class="dropdown">

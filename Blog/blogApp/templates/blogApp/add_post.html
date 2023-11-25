@@ -12,7 +12,7 @@
         <div class="col-6">
             <!-- form for submitting the data -->
 
-            <form action="{% url 'blogApp:add_post_view' %}" method="POST">
+            <form action="{% url 'blogApp:add_post_view' %}" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
                 <label>Blog Title:</label>
                 <input class="form-control" type="text" name="title" placeholder="Blog Title" />
@@ -25,6 +25,17 @@
                     <option value="True"> Yes</option>
                     <option value="False"> No</option>
                 </select>
+
+                <label>category</label>
+                {% for key, value in categories.choices %}
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="category" id="{{key}}" value="{{value}}">
+                        <label class="form-check-label" for="{{key}}"> {{value}}</label>
+                    </div>
+                {% endfor %}
+
+                <label> Upload image for your blog: </label>
+                <input type="file" accept="image/*" name="image" class="form-control" /> 
 
                 <label>published at?</label>
                 <input class="form-control" name="published_at" type="date" />  

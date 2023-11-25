@@ -9,12 +9,12 @@ from django.utils import timezone
 def add_post_view(request: HttpRequest):
 
     if request.method == "POST":
-        read_blog_item = Blog(title=request.POST["title"], content=request.POST["content"], is_published=request.POST["is_published"],published_at=request.POST["published_at"])
+        read_blog_item = Blog(title=request.POST["title"], content=request.POST["content"], is_published=request.POST["is_published"],published_at=request.POST["published_at"] ,category=request.POST["category"], image=request.FILES["image"])
         read_blog_item.save()
 
         return redirect("blogApp:read_blog_view")
 
-    return render(request, "blogApp/add_post.html")
+    return render(request, "blogApp/add_post.html" , {"categories" : Blog.categories} )
 
 
 
@@ -39,11 +39,16 @@ try:
     def update_view(request :HttpRequest , blog_id):
         blog=Blog.objects.get(id=blog_id)
         if request.method == "POST":
-            updated_post = Blog(title=request.POST["title"], content=request.POST["content"], is_published=request.POST["is_published"] , published_at=request.POST["published_at"])
-            updated_post.save()
+            blog.title = request.POST["title"]
+            blog.content = request.POST["content"]
+            blog.is_published = request.POST["is_published"]
+            blog.published_at = request.POST["published_at"]
+            blog.category = request.POST["category"]
+            blog.image = request.FILES["image"]
+            blog.save()
 
-            return redirect("blogApp:read_blog_view" , blog_id=blog.id)
-        return render(request ,"blogApp/update.html" ,  {"blog":blog})
+            return redirect("blogApp:read_blog_view" )
+        return render(request ,"blogApp/update.html" ,  {"blog":blog , "categories"  : Blog.categories})
 except Exception as e:
     print(e)
 
@@ -55,3 +60,4 @@ try:
         return redirect("blogApp:read_blog_view")
 except Exception as e:
     print(e)
+    
