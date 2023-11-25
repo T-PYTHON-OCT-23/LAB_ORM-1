@@ -14,14 +14,16 @@ def add_blog_view(request: HttpRequest):
 
 
 def blogs_home_view(request: HttpRequest):
-
     blogs = Blog.objects.all()
 
     return render(request, "Blogs/blogs_home.html", {"blogs" : blogs})
 
 
 def blogs_details_view(request:HttpRequest, blog_id):
-    blog = Blog.objects.get(id=blog_id)
+    try:
+        blog = Blog.objects.get(id=blog_id)
+    except Exception as e:
+        return render(request,"blogs/not_exist.html")
     
     return render(request , "blogs/blogs_details.html", {"blog":blog})
 
