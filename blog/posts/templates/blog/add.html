@@ -18,11 +18,23 @@
 
                 <label>Content:</label>
                 <textarea class="form-control" name="content"></textarea>
+
+                <label>Category</label>
+
+                {% for key, value in categories.choices %}
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="category" id="{{key}}" value="{{value}}">
+                        <label class="form-check-label" for="{{key}}">
+                        {{value}}
+                        </label>
+                    </div>
+                {% endfor %}
                 
+                <label>Blog Poster:</label>
+                <input type="file" name="poster"  class="form-control" accept="image/*"/>
                 <label>is published</label>
                 <input type="checkbox" value="True" name="is_publishd" />
                 <br>
-
                 <input class="btn btn-primary" type="submit" value="post blog" />
             </form>
 
