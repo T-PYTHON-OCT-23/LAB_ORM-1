@@ -2,7 +2,13 @@ from django.db import models
 
 
 class Blog(models.Model):
-    title=models.CharField(max_length=300)
+    
+    categories=models.TextChoices("Categories", ["Makeup", "Movie","Celebrities", "Care","Places"])
+  
+
+    title=models.CharField(max_length=100)
     content=models.TextField()
     is_published=models.BooleanField()
     published_at=models.DateField()
+    category=models.CharField(choices=categories.choices)
+    poster = models.ImageField(upload_to="images/", default="images/blog.jpg")

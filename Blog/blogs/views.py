@@ -2,16 +2,16 @@ from django.shortcuts import render ,redirect
 from django.http import HttpRequest, HttpResponse
 from .models import Blog
 # Create your views here.
-def read(request : HttpRequest, blog_id):
-    blogs=Blog.objects.get(id=blog_id)
-    return render(request, "Blogs/read.html", {"blogs" : blogs})
+def read(request : HttpRequest):
+    blogs=Blog.objects.all()
+    return render(request, "blogs/read.html", {"blogs" : blogs})
 
 def add(request : HttpRequest):
     if request.method=="POST":
         new_blog=Blog(title=request.POST['title'],content=request.POST['content'],is_published=request.POST['is_published'],published_at=request.POST['published_at'])
         new_blog.save()
-        return redirect("blogs:read")
-    return render(request,'blogs/add.html')
+        return redirect("blogs:read",new_blog.id)
+    return render(request,'blogs/add.html', {"categories" : Blog.categories})
 
 
 def detail(request:HttpRequest, blog_id):
@@ -30,11 +30,12 @@ def update(request: HttpRequest, blog_id):
         blog.content = request.POST["content"]
         blog.is_published = request.POST["is_published "]
         blog.published_at= request.POST["published_at"]
+        blog.category = request.POST["category"]
         blog.save()
 
         return redirect('blogs:detail', blog_id=blog.id)
 
-    return render(request, "blogs/update.html", {"blog" : blog})
+    return render(request, "blogs/update.html", {"blog" : blog ,"categories" : Blog.categories})
 
 
 def delete(request: HttpRequest, blog_id):
@@ -42,4 +43,4 @@ def delete(request: HttpRequest, blog_id):
     blog = Blog.objects.get(id=blog_id)
     blog.delete()
 
-    return redirect("blogs:home_blog")
+    return redirect("blogs:read")

@@ -25,8 +25,23 @@
                 
                 </select>
 
+                <label>Category</label>
+
+                {% for key, value in categories.choices %}
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="category" id="{{key}}" value="{{value}}">
+                        <label class="form-check-label" for="{{key}}">
+                        {{value}}
+                        </label>
+                    </div>
+                {% endfor %}
+                
+                <label>Blog Images:</label>
+                <input class="form-control" name="poster" type="file" accept="image/*"/>
+                
                 <label>Published_at:</label>
-                <input class="form-control" name="Published_at" type="date" />
+                <input class="form-control" name="published_at" type="date" />
+            
 
                 <input class="btn btn-primary" type="submit" value="Create blog" />
             </form>
