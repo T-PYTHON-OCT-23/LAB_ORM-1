@@ -10,10 +10,20 @@
     <h1 class="title"> Add new Blog </h1>
     <div class="row">
         <div class="col-6">
-            <form action="{% url 'main:add_blog' %}" method="POST">
+            <form action="{% url 'main:add_blog' %}" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
                 <label> Blog Name: </label><br>
                 <input class="form-control" type="text" name="name" placeholder="Add a title for your blog..." />
+                <br>
+                <br>
+                {% for key, value in categories.choices %}
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="category" id="{{key}}" value="{{value}}">
+                    <label class="form-check-label" for="{{key}}">
+                        {{value}}
+                    </label>
+                </div>
+                {% endfor %}
                 <br>
                 <br>
                 <label> Write your Blog:</label><br>
@@ -23,6 +33,10 @@
 
                 <label> Blog Release Date: </label><br>
                 <input class="form-control" name="release_date" type="date" />
+                <br>
+                <br>
+                <label>Post Image:</label>
+                <input type="file" name="image" class="form-control" accept="image/*" />
                 <br>
                 <br>
                 <input class="btn btn-primary" type="submit" value="Create Blog" />

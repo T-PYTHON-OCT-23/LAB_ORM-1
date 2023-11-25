@@ -12,10 +12,10 @@ def home(request: HttpRequest):
 def add_blog(request: HttpRequest):
     if request.method == "POST":
         new_blog = Blog(
-            name=request.POST["name"], paragraph=request.POST["paragraph"], release_date=request.POST["release_date"])
+            name=request.POST["name"], paragraph=request.POST["paragraph"], release_date=request.POST["release_date"], category = request.POST["category"] , image = request.FILES["image"])
         new_blog.save()
 
-        return redirect("main:read_blog")
+        return redirect("main:read_blog", {"categories" : Blog.categories})
 
     return render(request, "main/add.html")
 
@@ -28,15 +28,26 @@ def read_blog(request: HttpRequest):
 
 
 def detail_blog(request: HttpRequest, blog_id):
-    blogs = blog.objects.get(id=blog_id)
-    return render(request, "main/detail.html", {"blogs": blogs})
+    blogs = Blog.objects.get(id=blog_id)
+    return render(request, "main/detail.html", {"blog": blogs})
 
 
 def update_blog(request: HttpRequest, blog_id):
-    blogs = blog.objects.get(id=blog_id)
-    return render(request, "main/detail.html", {"blogs": blogs})
+        blogs = Blog.objects.get(id=blog_id)
+
+    if request.method == "POST":
+        blog.name = request.POST["name"]
+        blog.paragraph = request.POST["paragraph"]
+        blog.release_date = request.POST["release_date"]
+        blog.category = request.POST["category"]
+        blog.image = request.FILES["image"]
+        blog.save()
+
+        return redirect("main:read_blog", blog_id=blog.id)
+    return render(request, "main/update.html", {"blogs": blogs},  {"categories" : Blog.categories})
 
 
 def delete_blog(request: HttpRequest, blog_id):
-    blogs = blog.objects.get(id=blog_id)
-    return render(request, "main/detail.html", {"blogs": blogs})
+    blogs = Blog.objects.get(id=blog_id)
+    Blog.delete()
+    return redirect("main:read_blog")
