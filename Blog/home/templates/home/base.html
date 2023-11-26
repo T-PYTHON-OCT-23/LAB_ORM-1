@@ -25,6 +25,15 @@
                     <a class="nav-link" href="{% url 'blogs:add_blogs_views' %}">Add Blog</a>
                   </li>
                 </ul>
+                {% block catagoty %}
+                <form action="">
+                  <select class="form-select" aria-label="Default select example">
+                    <option selected>Catagory</option>
+                    <option value="True">Open</option>
+                    <option value="False">Cloused</option>
+                  </select>
+                </form>
+                {% endblock %}
                 {% block form %}
                 <form action="">
                   <select class="form-select" aria-label="Default select example">

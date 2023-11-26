@@ -17,7 +17,7 @@ def show_blogs_views(request:HttpRequest):
     blogs = Blogs.objects.all()
     #.filter(is_published=True)
 
-    return render(request, 'blogs/show_blogs.html',{'blogs':blogs})
+    return render(request, 'blogs/show_blogs.html',{'blogs':blogs,'catagory':Blogs.categories.choices})
 
 def filter_blogs_views(request:HttpRequest):
     if request.method == 'POST':
@@ -26,6 +26,13 @@ def filter_blogs_views(request:HttpRequest):
 
         return  render(request, 'blogs/show_blogs.html',{'blogs':b})
 
+def filter_catagory_blogs_views(request:HttpRequest):
+    if request.method == 'POST':
+        f = request.POST['catagory']
+        b = Blogs.objects.all().filter(catagory=f)
+
+        return  render(request, 'blogs/show_blogs.html',{'blogs':b})
+    
 def searchBar_blogs_views(request:HttpRequest):
 
     if request.GET:

@@ -12,6 +12,20 @@ All blogs
 </form>
 {% endblock %}
 
+{% block catagoty %}
+<form action="{% url 'blogs:filter_catagory_blogs_views' %}" method="POST">
+    {% csrf_token %}
+<select class="form-select" aria-label="Default select example" name="catagory">
+    <option selected>Catagory</option>
+    {% for key,value in catagory %}
+    <option value="{{key}}">{{value}}</option>
+
+    {% endfor %}
+</select>
+<input type="submit" class="btn btn-primary form-control" value="craete blogs">
+</form>
+{% endblock %}
+
 {% block form %}
 <form action="{% url 'blogs:filter_blogs_views' %}" method="get" enctype="multipart/form-data">
     {% csrf_token %}

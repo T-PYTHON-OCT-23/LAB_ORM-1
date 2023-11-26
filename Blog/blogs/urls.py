@@ -12,4 +12,6 @@ urlpatterns = [
     path('delete/blogs/<mo_id>',views.delete_blogs_views,name='delete_blogs_views'),
     path('filter/',views.filter_blogs_views,name='filter_blogs_views'),
     path('filter/search/',views.searchBar_blogs_views,name='searchBar_blogs_viewa'),
+    path('movie/catagory/',views.filter_catagory_blogs_views,name='filter_catagory_blogs_views'),
+    
 ]
