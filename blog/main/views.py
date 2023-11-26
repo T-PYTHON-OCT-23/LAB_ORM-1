@@ -5,11 +5,11 @@ from .forms import PostForm
 from django.urls import reverse
 
 def post_list(request):
-    try:
+    # try:
         posts = Post.objects.all()
         return render(request, 'blog/post_list.html', {'posts': posts})
-    except Exception as e:
-        return render(request, 'blog/error.html')
+    # except Exception as e:
+        # return render(request, 'blog/error.html')
 
 def post_detail(request, pk):
     try:
