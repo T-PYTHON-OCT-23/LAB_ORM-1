@@ -10,5 +10,5 @@ class Blog(models.Model):
     content=models.TextField()
     is_published=models.BooleanField()
     published_at=models.DateField()
-    category=models.CharField(choices=categories.choices)
+    category=models.CharField(max_length=50,choices=categories.choices)
     poster = models.ImageField(upload_to="images/", default="images/blog.jpg")
