@@ -5,7 +5,7 @@ All blogs
 {% endblock %}
 
 {% block search %}
-<form class="d-flex" role="search" action="{% url 'blogs:searchBar_blogs_viewa' %}" method="get">
+<form class="d-flex" role="search" action="{% url 'blogs:searchBar_blogs_viewa' %}" method="POST">
     {% csrf_token %}
   <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search">
   <button class="btn btn-outline-success" type="submit">Search</button>

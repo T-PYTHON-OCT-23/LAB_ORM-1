@@ -15,9 +15,25 @@ def add_blogs_views(request:HttpRequest):
 
 def show_blogs_views(request:HttpRequest):
     blogs = Blogs.objects.all()
+    #.filter(is_published=True)
 
     return render(request, 'blogs/show_blogs.html',{'blogs':blogs})
 
+def filter_blogs_views(request:HttpRequest):
+    if request.method == 'POST':
+        f = request.POST['filter']
+        b = Blogs.objects.all().filter(is_published=f)
+
+        return  render(request, 'blogs/show_blogs.html',{'blogs':b})
+
+def searchBar_blogs_views(request:HttpRequest):
+
+    if request.GET:
+        f = request.GET['search']
+        b = Blogs.objects.all().filter(title__contains=f)
+
+        return  render(request, 'blogs/filter_blogs.html',{'blogs':b})
+    
 def show_blogs_detils_view(request:HttpRequest,mo_id):
     try:
         movie = Blogs.objects.get(id=mo_id)

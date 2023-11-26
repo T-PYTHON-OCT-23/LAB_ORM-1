@@ -25,10 +25,27 @@
                     <a class="nav-link" href="{% url 'blogs:add_blogs_views' %}">Add Blog</a>
                   </li>
                 </ul>
+                {% block form %}
+                <form action="">
+                  <select class="form-select" aria-label="Default select example">
+                    <option selected>Blogs Filter</option>
+                    <option value="True">Open</option>
+                    <option value="False">Cloused</option>
+                  </select>
+                </form>
+                {% endblock %}
                 <span class="navbar-text">
                   Blogs daily
                 </span>
               </div>
+      
+              {% block search %}
+              <form class="d-flex" role="search" action="{% url 'blogs:searchBar_blogs_viewa' %}" method="get">
+                {% csrf_token %}
+              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search">
+              <button class="btn btn-outline-success" type="submit">Search</button>
+              </form>
+              {% endblock %}
             </div>
         </nav>
     </div>
