@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 from django.http import HttpRequest, HttpResponse
-from .models import Blogs
+from .models import Blogs,Comment
 # Create your views here.
 
 def add_blogs_views(request:HttpRequest):
@@ -42,13 +42,23 @@ def searchBar_blogs_views(request:HttpRequest):
         return  render(request, 'blogs/filter_blogs.html',{'blogs':b})
     
 def show_blogs_detils_view(request:HttpRequest,mo_id):
-    try:
-        movie = Blogs.objects.get(id=mo_id)
-        return render(request, 'blogs/show_blogs_detlies.html',{'blogs':movie})
-    except Exception as e:
+
+    if request.method == 'POST':
+        f = Blogs.objects.get(id=mo_id)
+        new_comment = Comment(movie=f,name=request.POST['name'],rating=request.POST['rating'],content=request.POST['content'])
+        new_comment.save()
         return redirect('blogs:show_blogs_views')
 
+    try:
+        movie = Blogs.objects.get(id=mo_id)
+        commento = Comment.objects.filter(movie=mo_id)
+        return render(request, 'blogs/show_blogs_detlies.html',{'blogs':movie,'rating':Comment.rating_scale.choices,'commento':commento})
+    except Exception as e:
+        #return redirect('blogs:show_blogs_views')
+        print(e)
+
 def update_blogs_views(request:HttpRequest,mo_id):
+
     blogs = Blogs.objects.get(id=mo_id)
     if request.method == 'POST':
         blogs.title = request.POST['title']
