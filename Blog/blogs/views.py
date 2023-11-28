@@ -18,7 +18,7 @@ def show_blogs_views(request:HttpRequest):
     today_date = date.today()
     blogs = Blogs.objects.all()
     #.filter(is_published=True)
-    commento = Comment.objects.all().filter(create_ar__contains=today_date).order_by('-create_ar')[0:4]
+    commento = Comment.objects.all().filter(create_ar__contains=today_date).order_by('-create_ar')[0:5]
 
     return render(request, 'blogs/show_blogs.html',{'blogs':blogs,'catagory':Blogs.categories.choices,'comment':commento})
 
