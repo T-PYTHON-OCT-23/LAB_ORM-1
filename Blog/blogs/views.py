@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect
 from django.http import HttpRequest, HttpResponse
 from .models import Blogs,Comment
+from datetime import date
 # Create your views here.
 
 def add_blogs_views(request:HttpRequest):
@@ -14,10 +15,12 @@ def add_blogs_views(request:HttpRequest):
     return render(request, 'blogs/add_blogs.html',{'catagory':Blogs.categories.choices})
 
 def show_blogs_views(request:HttpRequest):
+    today_date = date.today()
     blogs = Blogs.objects.all()
     #.filter(is_published=True)
+    commento = Comment.objects.all().filter(create_ar__contains=today_date).order_by('-create_ar')[0:4]
 
-    return render(request, 'blogs/show_blogs.html',{'blogs':blogs,'catagory':Blogs.categories.choices})
+    return render(request, 'blogs/show_blogs.html',{'blogs':blogs,'catagory':Blogs.categories.choices,'comment':commento})
 
 def filter_blogs_views(request:HttpRequest):
     if request.method == 'POST':
