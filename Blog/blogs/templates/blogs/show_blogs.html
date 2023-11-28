@@ -55,13 +55,14 @@ All blogs
     </div>
     <hr class="mt-2">
     <div class="row mt-4">
+        <h1> Review Section</h1>
         {% for n in comment %}
         <div class="col-3">
             <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner">
                   
-                    <div class="carousel-item active">
-                        <H4>Name Reviewer: {{n.name}}</H4>
+                    <div class="carousel-item active border p-2 mb-3 border-2">
+                        <H4>Reviewer: {{n.name}}</H4>
                         <H5>The movie: {{n.movie.title}}</H5>
                         <H6>The rate: {{n.rating}} Starts</H6>
                         <H6>The Review: {{n.content}}</H6>
