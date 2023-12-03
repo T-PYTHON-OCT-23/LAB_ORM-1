@@ -1,0 +1,28 @@
+{% extends 'home/base.html' %}
+{% block title %}
+Login
+{% endblock %}
+{% block body %}
+<div class="container">
+    <div class="row">
+        <H1>Login:</H1>
+        {% if msg %}
+            <h2>{{msg}}</h2>
+        {% endif %}
+        <div class="col-8 ms-2">
+            <form action="{% url 'users:login_user_view' %}" method="POST">
+                {% csrf_token%}
+                <label>Username:</label>
+                <input type="text" class="form-control" name="user_name">
+
+
+                <label>Password:</label>
+                <input type="text" name="password" class="form-control">
+
+                <input type="submit" class="form-control btn btn-primary mt-2">
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

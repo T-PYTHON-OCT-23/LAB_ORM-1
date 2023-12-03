@@ -14,6 +14,9 @@ class Blogs(models.Model):
     catagory = models.CharField(max_length=1028,choices=categories.choices)
     images = models.ImageField(upload_to="images/",default="/images/mainlogo.png")
 
+    def __str__(self) -> str:
+        return f"{self.title}"
+
 class Comment(models.Model):
     movie = models.ForeignKey(Blogs, on_delete=models.CASCADE)
     rating_scale = models.IntegerChoices('rating_scall',['1','2','3','4','5'])
@@ -22,3 +25,6 @@ class Comment(models.Model):
     rating = models.IntegerField(max_length=512,choices=rating_scale.choices)
     content = models.TextField()
     create_ar = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self) -> str:
+        return f"{self.name}"

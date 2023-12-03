@@ -21,9 +21,20 @@
                   <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="{% url 'blogs:show_blogs_views' %}">Home</a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item d-flex flex-row ">
                     <a class="nav-link" href="{% url 'blogs:add_blogs_views' %}">Add Blog</a>
+                    <a class="nav-link" href="{% url 'users:create_user_view' %}"> Sign in</a>
                   </li>
+                  {% if request.user.is_authenticated %}
+                  <li class="nav-item d-flex flex-row ">
+                    <h6>welcome,{{request.user.username}}</h6>
+                    <a class="nav-link" href="{% url 'users:logout_view' %}">logout</a>
+                  </li>
+                  {% else %}
+                  <li class="nav-item d-flex flex-row ">
+                    <a class="nav-link" href="{% url 'users:login_user_view' %}">login</a>
+                  </li>
+                  {% endif %}
                 </ul>
                 {% block catagoty %}
                 <form action="">
