@@ -1,0 +1,38 @@
+{% extends 'home/base.html' %}
+
+{% block body %}
+
+<div class="container">
+    <div class="row">
+        <h1>{{request.user.username}} profile:</h1>
+        <div class="col-4">
+            <div class="d-flex d-colum ">
+                <img style="height: 100px; width: 100px;" class="rounded" src="{{ request.user.profile.image.url }}" alt="my avatar">
+            </div>
+        </div>
+        <div class="col">
+            <div class="d-flex gap-1 p-2">
+                <form action="{% url 'account:edit_profile_view' request.user.id %}" enctype="multipart/form-data" method="POST">
+                    {% csrf_token %}
+                    <h3> Change profile </h3>
+                    <label>Email:</label>
+                    <input class="form-control" type="text" name="email" value="{{request.user.email}}">
+                    
+                    <label>First name:</label>
+                    <input class="form-control" type="text" name="first_name" value="{{request.user.first_name}}">
+
+                    <label>Last name:</label>
+                    <input class="form-control" type="text" name="last_name" value="{{request.user.last_name}}">
+
+                    <label>Avatar:</label>
+                    <input type="file" name="avatar" class="form-control">
+    
+                    <label>Bio:</label>
+                    <textarea class="form-control" name="bio">{{ request.user.profile.bio }}</textarea>
+                    <input type="submit" class="btn btn-primary form-control mt-2">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
